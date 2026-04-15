@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { prisma } from "@/lib/prisma"
+// import { prisma } from "@/lib/prisma"
 import { sendEmail, getLeadNotificationEmail, getLeadConfirmationEmail } from "@/lib/email"
 
 export async function POST(request: NextRequest) {
@@ -25,16 +25,16 @@ export async function POST(request: NextRequest) {
     }
 
     // Save lead to database
-    const lead = await prisma.lead.create({
-      data: {
-        name,
-        email,
-        phone: phone || null,
-        grade: grade || null,
-        message: message || null,
-        source: "consultation_form",
-      },
-    })
+    // const lead = await prisma.lead.create({
+    //   data: {
+    //     name,
+    //     email,
+    //     phone: phone || null,
+    //     grade: grade || null,
+    //     message: message || null,
+    //     source: "consultation_form",
+    //   },
+    // })
 
     // Send notification email to admin
     const adminEmail = process.env.ADMIN_EMAIL || process.env.SMTP_USER
@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
       { 
         success: true, 
         message: "Your request has been submitted successfully",
-        leadId: lead.id 
+        // leadId: lead.id 
       },
       { status: 201 }
     )

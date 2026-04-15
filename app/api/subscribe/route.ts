@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { prisma } from "@/lib/prisma"
+// import { prisma } from "@/lib/prisma"
 import { sendEmail } from "@/lib/email"
 
 export async function POST(request: NextRequest) {
@@ -25,29 +25,29 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if already subscribed
-    const existing = await prisma.subscriber.findUnique({
-      where: { email },
-    })
+    // const existing = await prisma.subscriber.findUnique({
+    //   where: { email },
+    // })
 
-    if (existing) {
-      if (existing.isSubscribed) {
-        return NextResponse.json(
-          { message: "You're already subscribed!" },
-          { status: 200 }
-        )
-      } else {
-        // Re-subscribe
-        await prisma.subscriber.update({
-          where: { email },
-          data: { isSubscribed: true },
-        })
-      }
-    } else {
-      // Create new subscriber
-      await prisma.subscriber.create({
-        data: { email },
-      })
-    }
+    // if (existing) {
+    //   if (existing.isSubscribed) {
+    //     return NextResponse.json(
+    //       { message: "You're already subscribed!" },
+    //       { status: 200 }
+    //     )
+    //   } else {
+    //     // Re-subscribe
+    //     await prisma.subscriber.update({
+    //       where: { email },
+    //       data: { isSubscribed: true },
+    //     })
+    //   }
+    // } else {
+    //   // Create new subscriber
+    //   await prisma.subscriber.create({
+    //     data: { email },
+    //   })
+    // }
 
     // Send welcome email
     await sendEmail({

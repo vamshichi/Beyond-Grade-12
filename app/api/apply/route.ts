@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { prisma } from "@/lib/prisma"
+// import { prisma } from "@/lib/prisma"
 import { sendEmail } from "@/lib/email"
 
 export async function POST(request: NextRequest) {
@@ -35,20 +35,20 @@ export async function POST(request: NextRequest) {
     }
 
     // Save application to database
-    const application = await prisma.application.create({
-      data: {
-        studentName,
-        parentName: parentName || null,
-        email,
-        phone,
-        grade,
-        school: school || null,
-        interests: interests || null,
-        goals: goals || null,
-        howDidYouHear: howDidYouHear || null,
-        status: "pending",
-      },
-    })
+    // const application = await prisma.application.create({
+    //   data: {
+    //     studentName,
+    //     parentName: parentName || null,
+    //     email,
+    //     phone,
+    //     grade,
+    //     school: school || null,
+    //     interests: interests || null,
+    //     goals: goals || null,
+    //     howDidYouHear: howDidYouHear || null,
+    //     status: "pending",
+    //   },
+    // })
 
     // Send notification email to admin
     const adminEmail = process.env.ADMIN_EMAIL || process.env.SMTP_USER
@@ -126,7 +126,7 @@ export async function POST(request: NextRequest) {
       { 
         success: true, 
         message: "Your application has been submitted successfully",
-        applicationId: application.id 
+        // applicationId: application.id 
       },
       { status: 201 }
     )
