@@ -1,0 +1,77 @@
+// This is your Prisma schema file for MongoDB
+// Learn more: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+// Lead model for consultation requests
+model Lead {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String
+  phone     String?
+  grade     String?
+  message   String?
+  source    String   @default("website")
+  status    String   @default("new") // new, contacted, qualified, enrolled
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// Newsletter subscriber model
+model Subscriber {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  email        String   @unique
+  isSubscribed Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+// Contact form submission model
+model Contact {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String
+  phone     String?
+  subject   String?
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+  @@index([createdAt])
+}
+
+// Application/Enrollment model for Elite Pathway
+model Application {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  studentName    String
+  parentName     String?
+  email          String
+  phone          String
+  grade          String
+  school         String?
+  interests      String?
+  goals          String?
+  howDidYouHear  String?
+  status         String   @default("pending") // pending, reviewing, accepted, rejected, enrolled
+  cohort         String?
+  notes          String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+}
