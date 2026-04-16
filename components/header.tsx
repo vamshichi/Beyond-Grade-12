@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 const navLinks = [
   { href: "/about", label: "About Us" },
@@ -126,7 +127,7 @@ export function Header() {
               className={`rounded-full transition-all ${
                 isScrolled || pathname !== "/"
                   ? "border-navy text-navy hover:bg-navy hover:text-ivory"
-                  : "border-ivory text-ivory hover:bg-ivory hover:text-navy"
+                  : "border-navy text-navy hover:bg-navy hover:text-ivory"
               }`}
             >
               <Link href="/contact">Book Consultation</Link>
