@@ -2,242 +2,470 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { motion, useScroll, useTransform, cubicBezier } from "framer-motion"
-import { useRef } from "react"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, ChevronDown, Shield, TrendingUp, Users } from "lucide-react"
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion"
+import { useRef, useState, useEffect, useCallback } from "react"
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 
-// Stagger helper
-const stagger = (i: number) => ({ duration: 0.8, delay: 0.1 + i * 0.12, ease: cubicBezier(0.22, 1, 0.36, 1) })
+// ─── Configuration ────────────────────────────────────────────────────────────
+
+const SLIDES = [
+  {
+    src: "/images/hero (4).png",
+    alt: "Students achieving goals",
+    eyebrow: "Expert Mentorship",
+    title: ["Shape Your", "Future"],
+    highlight: 1, // which line gets the gradient
+    description:
+      "Get clarity and direction with expert mentorship tailored for ambitious students.",
+    cta: { label: "Start Your Journey", href: "/contact" },
+  },
+  {
+    src: "/images/hero (3).png",
+    alt: "Mentorship session",
+    eyebrow: "1-on-1 Guidance",
+    title: ["Learn From", "Experts"],
+    highlight: 1,
+    description:
+      "Connect with mentors who guide you step by step toward the success you deserve.",
+    cta: { label: "Book a Session", href: "/contact" },
+  },
+  {
+    src: "/images/hero (2).png",
+    alt: "University campus",
+    eyebrow: "University Admissions",
+    title: ["Get Into", "Top Universities"],
+    highlight: 1,
+    description:
+      "Build a compelling profile and secure admissions at the world's finest institutions.",
+    cta: { label: "Apply Now", href: "/contact" },
+  },
+  {
+    src: "/images/hero (1).png",
+    alt: "Student success",
+    eyebrow: "Proven Results",
+    title: ["Turn Dreams", "Into Reality"],
+    highlight: 1,
+    description:
+      "Join thousands of students who have already transformed their ambitions into achievements.",
+    cta: { label: "See Success Stories", href: "/about" },
+  },
+] as const
+
+const AUTOPLAY_MS = 5500
+const IMG_DURATION = 1.4    // s — image crossfade
+const TEXT_DURATION = 0.65  // s — text reveal
+
+// ─── Variants ─────────────────────────────────────────────────────────────────
+
+/** Background image: crossfade + Ken-Burns zoom */
+const imageVariants = {
+  enter: { opacity: 0, scale: 1.10 },
+  active: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      opacity: { duration: IMG_DURATION, ease: [0.4, 0, 0.2, 1] as any },
+      scale:   { duration: IMG_DURATION * 1.8, ease: [0.25, 0.46, 0.45, 0.94] as any },
+    },
+  },
+  exit: {
+    opacity: 0,
+    scale: 1.05,
+    transition: {
+      opacity: { duration: IMG_DURATION * 0.7, ease: [0.4, 0, 1, 1] as any },
+    },
+  },
+}
+
+/** Soft vignette pulse on slide enter */
+const vignetteVariants = {
+  enter: { opacity: 0 },
+  active: { opacity: 1, transition: { duration: IMG_DURATION * 0.8, ease: [0.4, 0, 0.2, 1] as any } },
+  exit:   { opacity: 0, transition: { duration: 0.3 } },
+}
+
+/** Text block: staggered fade + lift */
+const textBlockVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.05 },
+  },
+  exit: { opacity: 0, transition: { duration: 0.3, ease: [0.4, 0, 1, 1] as any } },
+}
+
+const textItemVariants = {
+  hidden:  { opacity: 0, y: 22 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: TEXT_DURATION, ease: [0.22, 1, 0.36, 1] as any },
+  },
+}
+
+// ─── Sub-components ───────────────────────────────────────────────────────────
+
+/** Thin animated rule with a gold gleam */
+function Divider() {
+  return (
+    <motion.div
+      variants={textItemVariants}
+      className="flex items-center justify-center gap-3 my-6"
+    >
+      <span className="block h-px w-12 bg-gradient-to-r from-transparent to-gold/60" />
+      <span className="block w-1.5 h-1.5 rounded-full bg-gold/80" />
+      <span className="block h-px w-12 bg-gradient-to-l from-transparent to-gold/60" />
+    </motion.div>
+  )
+}
+
+// ─── HeroSection ──────────────────────────────────────────────────────────────
 
 export function HeroSection() {
-  const ref = useRef(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] })
-  const y = useTransform(scrollYProgress, [0, 1], [0, 180])
-  const opacity = useTransform(scrollYProgress, [0, 0.55], [1, 0])
+  const containerRef = useRef<HTMLElement>(null)
+  const intervalRef  = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  const stats = [
-    { icon: Users,      value: "5,000+", label: "Students Mentored" },
-    { icon: TrendingUp, value: "92%",    label: "Dream-University Rate" },
-    { icon: Shield,     value: "50+",    label: "Expert Mentors" },
-  ]
+  const [index,    setIndex]    = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
 
-  const badges = ["MIT", "Stanford", "Oxford", "IIT Delhi", "NUS", "LSE"]
+  // ── Scroll parallax ──────────────────────────────────────────────────────
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  })
+
+  const bgY          = useTransform(scrollYProgress, [0, 1], ["0%", "20%"])
+  const contentY     = useTransform(scrollYProgress, [0, 1], ["0%", "10%"])
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  const scrollOverlay  = useTransform(scrollYProgress, [0, 0.6], [0, 0.5])
+
+  // ── Navigation helpers ───────────────────────────────────────────────────
+  const goTo = useCallback(
+    (i: number) => setIndex(((i % SLIDES.length) + SLIDES.length) % SLIDES.length),
+    []
+  )
+  const next = useCallback(() => goTo(index + 1), [index, goTo])
+  const prev = useCallback(() => goTo(index - 1), [index, goTo])
+
+  // ── Autoplay ─────────────────────────────────────────────────────────────
+  const startAutoplay = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current)
+    intervalRef.current = setInterval(() => {
+      setIndex((i) => (i + 1) % SLIDES.length)
+    }, AUTOPLAY_MS)
+  }, [])
+
+  const stopAutoplay = useCallback(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current)
+      intervalRef.current = null
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!isPaused) startAutoplay()
+    else stopAutoplay()
+    return stopAutoplay
+  }, [isPaused, startAutoplay, stopAutoplay])
+
+  const handleManualNav = useCallback(
+    (fn: () => void) => { fn(); if (!isPaused) startAutoplay() },
+    [isPaused, startAutoplay]
+  )
+
+  // ─────────────────────────────────────────────────────────────────────────
+
+  const slide = SLIDES[index]
 
   return (
     <section
-      ref={ref}
-      className="relative min-h-screen overflow-hidden bg-[#0B1120] flex flex-col"
+      ref={containerRef}
+      className="relative h-screen max-h-screen overflow-hidden bg-[#0B1120]"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
     >
-      {/* ── Background ── */}
-      <motion.div style={{ y }} className="absolute inset-0 will-change-transform">
-        <Image
-          src="/images/hero-students.jpg"
-          alt="High-achieving students"
-          fill
-          priority
-          className="object-cover object-center "
+
+      {/* ── Background Layer ─────────────────────────────────────────────── */}
+      <motion.div
+        style={{ y: bgY }}
+        className="absolute inset-0 will-change-transform"
+      >
+        {/* Crossfading images */}
+        <AnimatePresence mode="sync">
+          <motion.div
+            key={`img-${index}`}
+            variants={imageVariants}
+            initial="enter"
+            animate="active"
+            exit="exit"
+            className="absolute inset-0"
+          >
+            <Image
+              src={slide.src}
+              alt={slide.alt}
+              fill
+              priority={index === 0}
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Static gradient stack — dark left + dark bottom always present */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0B1120]/55 via-[#0B1120]/30 to-[#0B1120]/80 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1120] via-transparent to-transparent pointer-events-none" />
+
+        {/* Vignette: soft animated per-slide pulse for depth */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`vignette-${index}`}
+            variants={vignetteVariants}
+            initial="enter"
+            animate="active"
+            exit="exit"
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse at center, transparent 40%, #0B1120 100%)",
+            }}
+          />
+        </AnimatePresence>
+
+        {/* Scroll-reactive cinematic darkening */}
+        <motion.div
+          style={{ opacity: scrollOverlay }}
+          className="absolute inset-0 bg-[#0B1120] pointer-events-none"
         />
-        {/* left-to-right dark vignette */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1120] via-[#0B1120]/10 to-transparent" />
-        {/* bottom fade */}
-        {/* <div className="absolute inset-0 bg-gradient-to-t from-[#0B1120] via-transparent to-[#0B1120]/60" /> */}
       </motion.div>
 
-      {/* ── Ambient glows ── */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      {/* ── Ambient Glows ────────────────────────────────────────────────── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
-          animate={{ scale: [1, 1.15, 1], opacity: [0.18, 0.28, 0.18] }}
+          animate={{ scale: [1, 1.25, 1], opacity: [0.06, 0.13, 0.06] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-32 left-0 w-[600px] h-[600px] rounded-full bg-[#C9A84C] blur-[120px]"
+          className="absolute top-[-20%] left-[35%] w-[500px] h-[500px] rounded-full"
+          style={{ background: "radial-gradient(circle, #C9A84C44 0%, transparent 70%)" }}
         />
         <motion.div
-          animate={{ scale: [1.1, 1, 1.1], opacity: [0.08, 0.16, 0.08] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-indigo-500 blur-[140px]"
+          animate={{ scale: [1.1, 1, 1.1], opacity: [0.04, 0.09, 0.04] }}
+          transition={{ duration: 13, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute bottom-[-10%] right-[20%] w-[400px] h-[400px] rounded-full"
+          style={{ background: "radial-gradient(circle, #C9A84C33 0%, transparent 70%)" }}
         />
       </div>
 
-      {/* ── Content ── */}
+      {/* ── Centered Content ─────────────────────────────────────────────── */}
       <motion.div
-        style={{ opacity }}
-        className="relative flex-1 mx-auto w-full max-w-7xl px-6 sm:px-10 lg:px-16 pt-36 pb-24 lg:pt-44 lg:pb-32"
+        style={{ opacity: contentOpacity, y: contentY }}
+        className="
+          relative z-10 h-full
+          flex flex-col items-center justify-center
+          px-6 sm:px-10
+          text-center
+        "
       >
-        <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
+        <div className="w-full max-w-2xl mx-auto">
 
-          {/* LEFT ─────────────────────────────────── */}
-          <div className="lg:w-[58%]">
-
-            {/* Exclusivity badge */}
+          <AnimatePresence mode="wait">
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={stagger(0)}
-              className="inline-flex items-center gap-2 bg-[#C9A84C]/10 border border-[#C9A84C]/30 backdrop-blur-sm px-4 py-2 rounded-full mb-8"
+              key={`content-${index}`}
+              variants={textBlockVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
             >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C9A84C] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#C9A84C]" />
-              </span>
-              <span className="text-[#C9A84C] text-xs sm:text-sm font-semibold tracking-wide uppercase">
-                Limited Cohort · Application Required
-              </span>
-            </motion.div>
 
-            {/* ── HEADLINE ── */}
-            <div className="space-y-2 mb-6">
+              {/* Eyebrow — small caps label */}
               <motion.p
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={stagger(1)}
-                className="text-white/50 text-sm sm:text-base font-medium uppercase tracking-[0.2em]"
+                variants={textItemVariants}
+                className="
+                  inline-flex items-center gap-2
+                  text-xs tracking-[0.25em] font-medium uppercase
+                  text-[#C9A84C]/80
+                  mb-4
+                "
               >
-                India's Premier Career Mentorship
+                <span className="block w-4 h-px bg-[#C9A84C]/50" />
+                {slide.eyebrow}
+                <span className="block w-4 h-px bg-[#C9A84C]/50" />
               </motion.p>
 
+              {/* Heading */}
               <motion.h1
-                initial={{ opacity: 0, y: 32 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={stagger(2)}
-                className="font-serif leading-[1.05] tracking-tight"
+                variants={textItemVariants}
+                className="
+                  font-serif font-bold leading-[1.08]
+                  text-4xl sm:text-5xl lg:text-6xl xl:text-7xl
+                  text-[#F5F0E8]
+                "
               >
-                {/* Line 1 */}
-                <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-extrabold text-white">
-                  Your Future
-                </span>
-                {/* Line 2 – gold accent */}
-                <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-extrabold text-[#C9A84C]">
-                  Deserves a Plan.
-                </span>
-                {/* Line 3 – slightly smaller, muted */}
-                <span className="block mt-3 text-2xl sm:text-3xl lg:text-4xl font-semibold text-white/60">
-                  Not Guesswork.
+                {/* First line — plain */}
+                <span className="block">{slide.title[0]}</span>
+
+                {/* Second line — gold gradient highlight */}
+                <span
+                  className="block bg-clip-text text-transparent"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(95deg, #C9A84C 0%, #F0D080 45%, #C9A84C 100%)",
+                  }}
+                >
+                  {slide.title[1]}
                 </span>
               </motion.h1>
-            </div>
 
-            {/* Sub-copy */}
-            <motion.p
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={stagger(3)}
-              className="text-white/65 text-lg sm:text-xl leading-relaxed max-w-2xl mb-10"
-            >
-              We pair high-school students with mentors from the world's top institutions —
-              so you walk in with confusion and walk out with a <em>concrete roadmap</em>{" "}
-              to the career and university that actually fits you.
-            </motion.p>
+              {/* Ornamental divider */}
+              <Divider />
 
-            {/* ── CTAs ── */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={stagger(4)}
-              className="flex flex-col sm:flex-row items-start sm:items-center gap-4"
-            >
-              {/* Primary – gold, large */}
-              <Link href="/contact">
-                <button className="group relative inline-flex items-center gap-3 bg-[#C9A84C] hover:bg-[#d4b35e] text-[#0B1120] font-bold text-base sm:text-lg px-8 py-4 rounded-full shadow-[0_0_40px_rgba(201,168,76,0.35)] hover:shadow-[0_0_60px_rgba(201,168,76,0.55)] transition-all duration-300">
-                  Apply for Mentorship
-                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
-                </button>
-              </Link>
+              {/* Description */}
+              <motion.p
+                variants={textItemVariants}
+                className="
+                  text-base sm:text-lg
+                  text-[#F5F0E8]/65
+                  leading-relaxed
+                  max-w-lg mx-auto
+                "
+              >
+                {slide.description}
+              </motion.p>
 
-              {/* Secondary – ghost */}
-              <Link href="/programs">
-                <button className="inline-flex items-center gap-2 text-white/75 hover:text-white font-semibold text-base border border-white/20 hover:border-white/50 px-7 py-[14px] rounded-full transition-all duration-300 backdrop-blur-sm">
-                  Explore Programs
-                </button>
-              </Link>
-            </motion.div>
-
-            {/* Admission logos strip */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={stagger(5)}
-              className="mt-10 flex flex-wrap items-center gap-3"
-            >
-              <span className="text-white/35 text-xs uppercase tracking-widest mr-1">Admits to</span>
-              {badges.map((b) => (
-                <span
-                  key={b}
-                  className="px-3 py-1 rounded-full bg-white/6 border border-white/10 text-white/60 text-xs font-medium"
+              {/* CTA */}
+              <motion.div variants={textItemVariants} className="mt-9">
+                <Link
+                  href={slide.cta.href}
+                  className="
+                    group
+                    inline-flex items-center gap-3
+                    bg-[#C9A84C] hover:bg-[#D4B45A]
+                    text-[#0B1120]
+                    font-semibold text-sm tracking-wide
+                    px-8 py-3.5
+                    rounded-full
+                    transition-all duration-300
+                    shadow-[0_0_24px_#C9A84C30]
+                    hover:shadow-[0_0_36px_#C9A84C50]
+                    hover:scale-[1.03]
+                    focus-visible:outline-none
+                    focus-visible:ring-2 focus-visible:ring-[#C9A84C]
+                  "
                 >
-                  {b}
-                </span>
-              ))}
+                  {slide.cta.label}
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+                </Link>
+              </motion.div>
+
             </motion.div>
-          </div>
+          </AnimatePresence>
 
-          {/* RIGHT – stat cards ────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="hidden lg:flex lg:w-[42%] flex-col gap-5 self-start mt-8 lg:mt-0"
-          >
-            {/* Big pull-quote card */}
-            <div className="rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md p-8">
-              <p className="text-white/40 text-xs uppercase tracking-widest mb-4 font-medium">
-                Why students choose us
-              </p>
-              <blockquote className="font-serif text-2xl text-white leading-snug">
-                "I went from having zero idea about my future to{" "}
-                <span className="text-[#C9A84C]">getting into Stanford</span> — in one programme."
-              </blockquote>
-              <div className="mt-5 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#C9A84C]/20 flex items-center justify-center text-[#C9A84C] font-bold text-sm">
-                  A
-                </div>
-                <div>
-                  <div className="text-white text-sm font-semibold">Arjun S.</div>
-                  <div className="text-white/40 text-xs">Class of 2024 · Stanford CS</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Stat cards row */}
-            <div className="grid grid-cols-3 gap-4">
-              {stats.map(({ icon: Icon, value, label }, i) => (
-                <motion.div
-                  key={label}
-                  animate={{ y: [0, i % 2 === 0 ? -8 : 8, 0] }}
-                  transition={{ duration: 4 + i * 0.5, repeat: Infinity, ease: "easeInOut" }}
-                  className="rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md p-5 flex flex-col items-start gap-3"
-                >
-                  <div className="w-8 h-8 rounded-lg bg-[#C9A84C]/15 flex items-center justify-center">
-                    <Icon className="w-4 h-4 text-[#C9A84C]" />
-                  </div>
-                  <div>
-                    <div className="font-serif text-2xl font-bold text-white">{value}</div>
-                    <div className="text-white/45 text-xs leading-tight mt-0.5">{label}</div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Urgency strip */}
-            <div className="rounded-xl bg-[#C9A84C]/10 border border-[#C9A84C]/25 px-5 py-3 flex items-center justify-between">
-              <span className="text-[#C9A84C] text-sm font-semibold">Applications open — June 2025</span>
-              <span className="text-white/40 text-xs">Only 30 seats</span>
-            </div>
-          </motion.div>
         </div>
       </motion.div>
 
-      {/* ── Scroll cue ── */}
+      {/* ── Slide Controls ────────────────────────────────────────────────── */}
+
+      {/* Arrow Buttons */}
+      <div className="absolute inset-y-0 left-4 right-4 z-20 hidden lg:flex items-center justify-between pointer-events-none">
+        {[
+          { fn: prev, Icon: ChevronLeft, label: "Previous slide" },
+          { fn: next, Icon: ChevronRight, label: "Next slide"     },
+        ].map(({ fn, Icon, label }) => (
+          <motion.button
+            key={label}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+            onClick={() => handleManualNav(fn)}
+            aria-label={label}
+            className="
+              pointer-events-auto
+              w-9 h-9 rounded-full
+              border border-[#F5F0E8]/15
+              bg-[#0B1120]/30 backdrop-blur-sm
+              text-[#F5F0E8]/50 hover:text-[#F5F0E8]
+              hover:border-[#C9A84C]/40 hover:bg-[#0B1120]/50
+              flex items-center justify-center
+              transition-all duration-200
+              focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#C9A84C]
+            "
+          >
+            <Icon className="w-4 h-4" />
+          </motion.button>
+        ))}
+      </div>
+
+      {/* Dot + Progress Indicators */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
+        transition={{ delay: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2.5"
       >
-        <span className="text-white/25 text-[10px] uppercase tracking-widest">Scroll</span>
-        <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.4, repeat: Infinity }}>
-          <ChevronDown className="w-4 h-4 text-white/25" />
-        </motion.div>
+        {/* Dots */}
+        <div className="flex items-center gap-2" role="tablist" aria-label="Slide navigation">
+          {SLIDES.map((_, i) => (
+            <button
+              key={i}
+              role="tab"
+              aria-selected={i === index}
+              aria-label={`Go to slide ${i + 1}`}
+              onClick={() => handleManualNav(() => goTo(i))}
+              className="relative focus-visible:outline-none"
+            >
+              <span
+                className="block h-[3px] rounded-full overflow-hidden transition-all duration-300"
+                style={{ width: i === index ? "28px" : "12px", background: "rgba(245,240,232,0.2)" }}
+              >
+                {i === index && (
+                  <motion.span
+                    key={`fill-${index}-${isPaused}`}
+                    className="block h-full rounded-full origin-left"
+                    style={{ background: "#C9A84C" }}
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: isPaused ? 0 : 1 }}
+                    transition={{
+                      duration: isPaused ? 0 : AUTOPLAY_MS / 1000,
+                      ease: "linear",
+                    }}
+                  />
+                )}
+              </span>
+            </button>
+          ))}
+        </div>
+
+        {/* Slide counter */}
+        <span className="font-mono text-[10px] tracking-[0.2em] text-[#F5F0E8]/30 select-none">
+          {String(index + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}
+        </span>
       </motion.div>
+
+      {/* Pause badge */}
+      <AnimatePresence>
+        {isPaused && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.15 }}
+            className="
+              absolute top-5 right-5 z-30
+              px-2.5 py-1 rounded-full
+              bg-[#0B1120]/50 backdrop-blur-sm
+              border border-[#F5F0E8]/10
+              text-[#F5F0E8]/35 text-[9px]
+              font-mono tracking-[0.2em] select-none pointer-events-none
+            "
+          >
+            PAUSED
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </section>
   )
 }
