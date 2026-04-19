@@ -53,9 +53,9 @@ export function ProblemSection() {
           </FadeUp>
           <FadeUp delay={0.1}>
             <h2 className="mt-4 font-serif text-3xl font-bold text-navy sm:text-4xl lg:text-5xl text-balance">
-              Why Do Bright Students
+              We expect 16-year-olds to make life-changing decisions… without ever helping them understand what those
               <br />
-              <span className="text-gold">Struggle with Career Decisions?</span>
+              <span className="text-gold">choices really mean</span>
             </h2>
           </FadeUp>
           <FadeUp delay={0.2}>
@@ -115,8 +115,7 @@ export function ProblemSection() {
         <FadeUp delay={0.5} className="mt-16 text-center">
           <DrawLine className="w-24 h-px bg-gold mx-auto mb-8" />
           <p className="text-xl text-navy font-serif italic max-w-2xl mx-auto">
-            &ldquo;The cost of confusion isn&apos;t just time—it&apos;s potential left unrealized, 
-            dreams deferred, and confidence lost.&rdquo;
+            1 in 3 students in Canada, either Drop OUT or Change their Program in the university!
           </p>
         </FadeUp>
       </div>

@@ -6,12 +6,13 @@ import { SolutionSection } from "@/components/sections/solution"
 import { FlagshipProgramSection } from "@/components/sections/flagship-program"
 import { HowItWorksSection } from "@/components/sections/how-it-works"
 import { WhyChooseUsSection } from "@/components/sections/why-choose-us"
-import { MentorsSection } from "@/components/sections/mentors"
+import { MentorsSection } from "@/components/sections/mentor"
 import { ResultsSection } from "@/components/sections/results"
 import { ParentsSection } from "@/components/sections/parents"
 import { TestimonialsSection } from "@/components/sections/testimonials"
 import { FAQSection } from "@/components/sections/faq"
 import { ContactSection } from "@/components/sections/contact"
+import { VisionMissionSection } from "@/components/sections/vision-mission-section"
 
 export default function Home() {
   return (
@@ -20,11 +21,13 @@ export default function Home() {
       <main>
         <HeroSection />
         <ProblemSection />
+        <VisionMissionSection />
         <SolutionSection />
         <FlagshipProgramSection />
         <HowItWorksSection />
         <WhyChooseUsSection />
         <MentorsSection />
+        {/* <MentorsSection /> */}
         <ResultsSection />
         <ParentsSection />
         <TestimonialsSection />

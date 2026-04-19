@@ -8,33 +8,23 @@ import { GraduationCap, Users, Globe, Shield, Clock, Award, CheckCircle2 } from 
 const differentiators = [
   {
     icon: GraduationCap,
-    title: "Expert Mentors",
-    description: "Learn from professionals who graduated from top universities and have excelled in their careers."
-  },
-  {
-    icon: Users,
-    title: "Personalized Approach",
-    description: "No two students are alike. Every roadmap is tailored to your unique strengths and goals."
-  },
-  {
-    icon: Globe,
-    title: "Global Perspective",
-    description: "Access guidance for universities worldwide — from Ivy League to top European and Asian institutions."
+    title: "Real professionals, not textbooks",
+    description: "Your child gets to accomplish professionals who share the unfiltered truth about real careers. Not a course. Not a video. A real human who has lived it."
   },
   {
     icon: Shield,
-    title: "Proven Framework",
-    description: "Our structured methodology has helped hundreds of students achieve their dream admissions."
+    title: "Clarity before the crossroads",
+    description: "Most students don't figure out the wrong path until they're 2 years and $40,000 into a degree they don't want. BG12 gives them clarity before that costly mistake."
   },
   {
-    icon: Clock,
-    title: "Timely Guidance",
-    description: "Start early, stay ahead. We ensure you never miss critical deadlines or opportunities."
+    icon: Users,
+    title: "A personalised roadmap, not generic advice",
+    description: "Every student leaves with their own Career Blueprint — personalised to their strengths, interests, and next steps tailored specifically to them."
   },
   {
     icon: Award,
-    title: "Real Results",
-    description: "92% of our students secure admission to their top 3 university choices."
+    title: "University admissions edge",
+    description: "We help students build the kind of profile Canada's top universities actually want — not just a high average, but a compelling story of leadership, purpose, and direction."
   }
 ]
 
@@ -57,21 +47,17 @@ export function WhyChooseUsSection() {
         {/* Section Header */}
         <FadeUp className="mx-auto max-w-3xl text-center">
           <span className="text-gold text-sm font-medium tracking-widest uppercase">
-            Why Us
+            Why Beyond Grade 12
           </span>
           <h2 className="mt-4 font-serif text-3xl font-bold text-ivory sm:text-4xl lg:text-5xl">
-            Why Choose 
-            <span className="text-gold"> Beyond Grade 12?</span>
+            Why Beyond Grade 12 is the most important thing for your
+            <span className="text-gold"> child&apos;s future?</span>
           </h2>
-          <p className="mt-6 text-lg leading-relaxed text-ivory/70">
-            We don&apos;t just guide — we transform. Here&apos;s what sets us apart 
-            from generic counseling services.
-          </p>
         </FadeUp>
 
         {/* Differentiators Grid */}
         <div className="mt-16 lg:mt-20">
-          <StaggerContainer className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" staggerDelay={0.1}>
+          <StaggerContainer className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2" staggerDelay={0.1}>
             {differentiators.map((item) => (
               <StaggerItem key={item.title}>
                 <motion.div 
