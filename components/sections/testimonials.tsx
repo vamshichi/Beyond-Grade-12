@@ -138,14 +138,14 @@ export function TestimonialsSection() {
 
                   {/* Author */}
                   <div className="mt-8 flex items-center gap-4">
-                    <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-gold">
+                    {/* <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-gold">
                       <Image
                         src={testimonials[currentIndex].image}
                         alt={testimonials[currentIndex].name}
                         fill
                         className="object-cover"
                       />
-                    </div>
+                    </div> */}
                     <div>
                       <p className="font-semibold text-ivory">{testimonials[currentIndex].name}</p>
                       <p className="text-sm text-gold">{testimonials[currentIndex].role}</p>

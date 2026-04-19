@@ -140,7 +140,7 @@ export function FlagshipProgramSection() {
                     size="lg" 
                     variant="outline" 
                     asChild 
-                    className="w-full border-ivory/30 text-ivory hover:bg-ivory hover:text-navy rounded-full"
+                    className="w-full border-ivory/30 text-black hover:bg-ivory hover:text-navy rounded-full"
                   >
                     <Link href="/contact">Book Free Consultation</Link>
                   </Button>
@@ -148,7 +148,7 @@ export function FlagshipProgramSection() {
 
                 {/* Social Proof */}
                 <div className="mt-8 flex items-center justify-center gap-3">
-                  <div className="flex -space-x-2">
+                  {/* <div className="flex -space-x-2">
                     {["/images/mentor-1.jpg", "/images/mentor-2.jpg", "/images/mentor-3.jpg"].map((src, i) => (
                       <Image
                         key={i}
@@ -159,7 +159,7 @@ export function FlagshipProgramSection() {
                         className="w-8 h-8 rounded-full border-2 border-navy object-cover"
                       />
                     ))}
-                  </div>
+                  </div> */}
                   <p className="text-xs text-ivory/60">
                     Join <span className="text-gold font-semibold">5000+</span> students
                   </p>

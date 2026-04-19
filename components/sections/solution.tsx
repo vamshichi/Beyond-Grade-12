@@ -105,7 +105,7 @@ export function SolutionSection() {
                     asChild 
                     size="lg" 
                     variant="outline" 
-                    className="border-ivory text-ivory hover:bg-ivory hover:text-navy rounded-full"
+                    className="border-ivory text-black hover:bg-ivory hover:text-navy rounded-full"
                   >
                     <Link href="/contact">Talk to Us</Link>
                   </Button>

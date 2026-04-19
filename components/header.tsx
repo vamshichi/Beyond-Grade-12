@@ -10,8 +10,8 @@ import Image from "next/image"
 
 const navLinks = [
   { href: "/about", label: "About Us" },
-  { 
-    href: "/programs", 
+  {
+    href: "/programs",
     label: "Programs",
     dropdown: [
       { href: "/programs#flagship", label: "Flagship Program" },
@@ -43,37 +43,42 @@ export function Header() {
   }, [pathname])
 
   return (
-    <motion.header 
+    <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? "bg-ivory/95 backdrop-blur-md shadow-sm" 
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+          ? "bg-ivory/95 backdrop-blur-md shadow-sm"
+          : "bg-gradient-to-r from-ivory/20 to-black/40"
+        }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between lg:h-24">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <motion.div 
+            <motion.div
               whileHover={{ scale: 1.02 }}
               className="relative"
             >
-              <span className={`font-serif text-xl font-bold lg:text-2xl transition-colors ${
-                isScrolled || pathname !== "/" ? "text-navy" : "text-ivory"
-              }`}>
+              <Image
+                src="/logo.png" // put your logo in /public folder
+                alt="Beyond Grade 12 Logo"
+                width={80}
+                height={40}
+                className="object-contain"
+              />
+              {/* <span className={`font-serif text-xl font-bold lg:text-2xl transition-colors ${isScrolled || pathname !== "/" ? "text-navy" : "text-ivory"
+                }`}>
                 Beyond
               </span>
-              <span className="text-gold font-serif text-xl font-bold lg:text-2xl"> Grade 12</span>
+              <span className="text-gold font-serif text-xl font-bold lg:text-2xl"> Grade 12</span> */}
             </motion.div>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex lg:items-center lg:gap-1">
             {navLinks.map((link) => (
-              <div 
+              <div
                 key={link.href}
                 className="relative"
                 onMouseEnter={() => link.dropdown && setActiveDropdown(link.label)}
@@ -81,18 +86,17 @@ export function Header() {
               >
                 <Link
                   href={link.href}
-                  className={`flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-full ${
-                    pathname === link.href 
-                      ? "text-gold" 
-                      : isScrolled || pathname !== "/" 
-                        ? "text-charcoal hover:text-navy hover:bg-navy/5" 
+                  className={`flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-full ${pathname === link.href
+                      ? "text-gold"
+                      : isScrolled || pathname !== "/"
+                        ? "text-charcoal hover:text-navy hover:bg-navy/5"
                         : "text-ivory/90 hover:text-ivory hover:bg-ivory/10"
-                  }`}
+                    }`}
                 >
                   {link.label}
                   {link.dropdown && <ChevronDown className="w-4 h-4" />}
                 </Link>
-                
+
                 {/* Dropdown */}
                 <AnimatePresence>
                   {link.dropdown && activeDropdown === link.label && (
@@ -121,19 +125,18 @@ export function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex lg:items-center lg:gap-3">
-            <Button 
-              variant="outline" 
-              asChild 
-              className={`rounded-full transition-all ${
-                isScrolled || pathname !== "/"
+            <Button
+              variant="outline"
+              asChild
+              className={`rounded-full transition-all ${isScrolled || pathname !== "/"
                   ? "border-navy text-navy hover:bg-navy hover:text-ivory"
                   : "border-navy text-navy hover:bg-navy hover:text-ivory"
-              }`}
+                }`}
             >
               <Link href="/contact">Book Consultation</Link>
             </Button>
-            <Button 
-              asChild 
+            <Button
+              asChild
               className="bg-gold text-navy hover:bg-gold/90 rounded-full"
             >
               <Link href="/contact?type=apply">Apply Now</Link>
@@ -177,9 +180,8 @@ export function Header() {
                   >
                     <Link
                       href={link.href}
-                      className={`block py-4 text-2xl font-serif font-semibold transition-colors ${
-                        pathname === link.href ? "text-gold" : "text-navy"
-                      }`}
+                      className={`block py-4 text-2xl font-serif font-semibold transition-colors ${pathname === link.href ? "text-gold" : "text-navy"
+                        }`}
                     >
                       {link.label}
                     </Link>
@@ -199,18 +201,18 @@ export function Header() {
                   </motion.div>
                 ))}
               </nav>
-              
+
               <div className="mt-auto space-y-4">
-                <Button 
-                  variant="outline" 
-                  asChild 
+                <Button
+                  variant="outline"
+                  asChild
                   className="w-full border-navy text-navy hover:bg-navy hover:text-ivory rounded-full"
                   size="lg"
                 >
                   <Link href="/contact">Book Consultation</Link>
                 </Button>
-                <Button 
-                  asChild 
+                <Button
+                  asChild
                   className="w-full bg-gold text-navy hover:bg-gold/90 rounded-full"
                   size="lg"
                 >

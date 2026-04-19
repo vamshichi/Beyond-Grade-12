@@ -131,14 +131,14 @@ export function ResultsSection() {
                     
                     {/* Student Info */}
                     <div className="mt-6 flex items-center gap-3 pt-4 border-t border-charcoal/10">
-                      <div className="relative w-10 h-10 rounded-full overflow-hidden">
+                      {/* <div className="relative w-10 h-10 rounded-full overflow-hidden">
                         <Image
                           src={item.image}
                           alt={item.student}
                           fill
                           className="object-cover"
                         />
-                      </div>
+                      </div> */}
                       <div>
                         <p className="text-sm font-medium text-navy">{item.student}</p>
                         <p className="text-xs text-gold">{item.university}</p>
