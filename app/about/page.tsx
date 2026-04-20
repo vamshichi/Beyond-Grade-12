@@ -5,12 +5,12 @@ import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { 
-  FadeUp, 
-  FadeIn, 
-  SlideInLeft, 
-  SlideInRight, 
-  StaggerContainer, 
+import {
+  FadeUp,
+  FadeIn,
+  SlideInLeft,
+  SlideInRight,
+  StaggerContainer,
   StaggerItem,
   ImageReveal,
   TextReveal,
@@ -74,7 +74,6 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-ivory">
       <Header />
-      
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
         <div className="absolute inset-0 bg-navy" />
@@ -94,9 +93,12 @@ export default function AboutPage() {
               </h1>
             </FadeUp>
             <FadeUp delay={0.2}>
-              <p className="mt-6 max-w-2xl mx-auto text-lg text-ivory/80 leading-relaxed">
-                Beyond Grade 12 was founded on a simple belief: every student deserves 
-                expert guidance to discover their potential and chart their path to success.
+              <p className="mt-6 max-w-3xl mx-auto text-lg text-ivory/80 leading-relaxed text-center">
+                Beyond Grade 12 is an elite mentorship academy where high school students
+                discover their direction, build an undeniable profile, and earn their place
+                at top universities guided by accomplished professionals across Engineering,
+                Technology, Healthcare, Finance, and Law who deliver the unfiltered truth,
+                and a real roadmap to the future they deserve.
               </p>
             </FadeUp>
           </div>
@@ -118,7 +120,7 @@ export default function AboutPage() {
                 />
               </ImageReveal>
             </SlideInLeft>
-            
+
             <SlideInRight>
               <div className="space-y-8">
                 <div>
@@ -129,17 +131,16 @@ export default function AboutPage() {
                     <span className="text-sm font-medium tracking-widest text-gold uppercase">Our Mission</span>
                   </div>
                   <h2 className="font-serif text-3xl font-bold text-navy mb-4">
-                    Empowering Students to Make Informed Life Decisions
+                    Real Mentorship. Real Direction.
                   </h2>
                   <p className="text-charcoal/70 leading-relaxed">
-                    We bridge the gap between where students are and where they want to be. 
-                    Through personalized mentorship, strategic guidance, and real-world exposure, 
-                    we help young minds discover their calling and equip them with the tools to pursue it.
+                    To guide students through early career exploration and earn university admissions
+                    aligned with their strengths, interests, and long-term goals — through real mentorship, not guesswork.
                   </p>
                 </div>
-                
+
                 <DrawLine className="h-px bg-gold/30 w-full" />
-                
+
                 <div>
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-12 h-12 rounded-full bg-navy/10 flex items-center justify-center">
@@ -148,12 +149,11 @@ export default function AboutPage() {
                     <span className="text-sm font-medium tracking-widest text-navy uppercase">Our Vision</span>
                   </div>
                   <h2 className="font-serif text-3xl font-bold text-navy mb-4">
-                    A World Where Every Student Thrives
+                    Clarity. Confidence. Purpose.
                   </h2>
                   <p className="text-charcoal/70 leading-relaxed">
-                    We envision a future where career confusion is eliminated, where every 
-                    student has access to world-class guidance, and where potential is never 
-                    wasted due to lack of direction.
+                    To create a future where high school students choose their careers and universities
+                    with clarity, confidence, and purpose — supported by professionals who have lived it.
                   </p>
                 </div>
               </div>
@@ -171,7 +171,7 @@ export default function AboutPage() {
               Our Core Values
             </h2>
           </FadeUp>
-          
+
           <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8" staggerDelay={0.1}>
             {values.map((value) => (
               <StaggerItem key={value.title}>
@@ -201,11 +201,11 @@ export default function AboutPage() {
               Milestones Along the Way
             </h2>
           </FadeUp>
-          
+
           <div className="relative">
             {/* Timeline line */}
             <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gold/30 transform -translate-x-1/2" />
-            
+
             <StaggerContainer className="space-y-12" staggerDelay={0.15}>
               {milestones.map((milestone, index) => (
                 <StaggerItem key={milestone.year}>
@@ -237,7 +237,7 @@ export default function AboutPage() {
               Experienced professionals dedicated to shaping the next generation of leaders.
             </p>
           </FadeUp>
-          
+
           <StaggerContainer className="grid md:grid-cols-3 gap-8" staggerDelay={0.15}>
             {team.map((member) => (
               <StaggerItem key={member.name}>

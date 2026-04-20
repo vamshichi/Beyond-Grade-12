@@ -7,35 +7,30 @@ import { ClipboardCheck, Compass, Map, Rocket } from "lucide-react"
 const steps = [
   {
     number: "01",
-    icon: ClipboardCheck,
-    title: "Discovery & Assessment",
-    description: "Begin with a comprehensive assessment of your interests, strengths, and aspirations. We understand who you are at your core.",
-    duration: "Week 1-2",
+    icon: Compass,
+    title: "Discover Your Ideal Career",
+    description:
+      "Through our Career Discovery Experience, uncover the path that truly aligns with your strengths, interests, and long-term vision — guided by professionals who have already walked the path.",
+    duration: "Phase 1",
     color: "from-gold/20 to-gold/5"
   },
   {
     number: "02",
-    icon: Compass,
-    title: "Career Exploration",
-    description: "Explore curated career paths that align with your profile. Learn from professionals who excel in fields you're passionate about.",
-    duration: "Week 3-5",
+    icon: ClipboardCheck,
+    title: "Build Your Standout Profile",
+    description:
+      "Craft a powerful, differentiated profile through our Future Builder Program with 1-on-1 expert mentorship — designed to make you impossible to ignore by top universities.",
+    duration: "Phase 2",
     color: "from-navy/20 to-navy/5"
   },
   {
     number: "03",
-    icon: Map,
-    title: "University Strategy",
-    description: "Develop a strategic university shortlist. Craft compelling applications, essays, and prepare for interviews with expert guidance.",
-    duration: "Week 6-9",
-    color: "from-gold/20 to-gold/5"
-  },
-  {
-    number: "04",
     icon: Rocket,
-    title: "Launch & Beyond",
-    description: "Submit confident applications. Continue with mentorship as you prepare for your next chapter with clarity and direction.",
-    duration: "Week 10-12",
-    color: "from-navy/20 to-navy/5"
+    title: "Secure Your Dream University",
+    description:
+      "Execute a winning admissions strategy with our University Accelerator Program — from applications to acceptances — ensuring you stand out where it matters most.",
+    duration: "Phase 3",
+    color: "from-gold/20 to-gold/5"
   }
 ]
 

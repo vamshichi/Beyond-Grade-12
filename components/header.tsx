@@ -7,17 +7,17 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import { programs } from "@/data/programs"
 
 const navLinks = [
   { href: "/about", label: "About Us" },
   {
     href: "/programs",
     label: "Programs",
-    dropdown: [
-      { href: "/programs#flagship", label: "Flagship Program" },
-      { href: "/programs#university-prep", label: "University Bootcamp" },
-      { href: "/programs#career-discovery", label: "Career Discovery" },
-    ]
+    dropdown: programs.map(program => ({
+      href: `/programs/${program.slug}`,
+      label: program.title
+    }))
   },
   { href: "/mentors", label: "Mentors" },
   { href: "/testimonials", label: "Success Stories" },
@@ -67,11 +67,6 @@ export function Header() {
                 height={40}
                 className="object-contain"
               />
-              {/* <span className={`font-serif text-xl font-bold lg:text-2xl transition-colors ${isScrolled || pathname !== "/" ? "text-navy" : "text-ivory"
-                }`}>
-                Beyond
-              </span>
-              <span className="text-gold font-serif text-xl font-bold lg:text-2xl"> Grade 12</span> */}
             </motion.div>
           </Link>
 
@@ -88,7 +83,7 @@ export function Header() {
                   href={link.href}
                   className={`flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-full ${pathname === link.href
                       ? "text-gold"
-                      : isScrolled || pathname !== "/"
+                      : isScrolled 
                         ? "text-charcoal hover:text-navy hover:bg-navy/5"
                         : "text-ivory/90 hover:text-ivory hover:bg-ivory/10"
                     }`}

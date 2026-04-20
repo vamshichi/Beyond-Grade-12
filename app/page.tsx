@@ -13,6 +13,7 @@ import { TestimonialsSection } from "@/components/sections/testimonials"
 import { FAQSection } from "@/components/sections/faq"
 import { ContactSection } from "@/components/sections/contact"
 import { VisionMissionSection } from "@/components/sections/vision-mission-section"
+import { ProgramsSection } from "@/components/sections/ProgramsSection"
 
 export default function Home() {
   return (
@@ -23,7 +24,8 @@ export default function Home() {
         <ProblemSection />
         <VisionMissionSection />
         <SolutionSection />
-        <FlagshipProgramSection />
+        {/* <FlagshipProgramSection /> */}
+        <ProgramsSection />
         <HowItWorksSection />
         <WhyChooseUsSection />
         <MentorsSection />
