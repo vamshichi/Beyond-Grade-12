@@ -62,7 +62,7 @@ export function ProgramCard({ program }: ProgramCardProps) {
             <div className="flex items-center justify-between pt-4">
               <div>
                 <span className="text-xs text-charcoal/60 block mb-1">Starting at</span>
-                <span className="text-2xl font-bold text-gold">{program.price}</span>
+                {/* <span className="text-2xl font-bold text-gold">{program.price}</span> */}
               </div>
               <motion.div
                 whileHover={{ x: 5 }}

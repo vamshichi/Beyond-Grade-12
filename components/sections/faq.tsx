@@ -9,16 +9,16 @@ import {
 
 const faqs = [
   {
-    question: "Who is the Elite Pathway program designed for?",
-    answer: "The Elite Pathway is designed for high school students in Grades 9-12 who are serious about gaining clarity on their career direction and securing admission to top universities. It's ideal for ambitious students who want personalized guidance rather than generic advice."
+    question: "Who is the Career Discovery Experience designed for?",
+    answer: "The Career Discovery Experience is designed for high school students in Grades 9-12 who are serious about gaining clarity on their career direction and securing admission to top universities. It's ideal for ambitious students who want personalized guidance rather than generic advice."
   },
   {
     question: "How is Beyond Grade 12 different from school counseling?",
-    answer: "School counselors are often stretched thin, serving hundreds of students with limited time per student. Beyond Grade 12 provides personalized 1-on-1 mentorship with experts who have graduated from top universities and have deep industry experience. Our structured 12-week program offers comprehensive support that goes far beyond what school counseling can provide."
+    answer: "School counselors are often stretched thin, serving hundreds of students with limited time per student. Beyond Grade 12 provides personalized 1-on-1 mentorship with experts who have graduated from top universities and have deep industry experience. Our structured program offers comprehensive support that goes far beyond what school counseling can provide."
   },
   {
     question: "What is the cohort model?",
-    answer: "We limit each cohort to 25 students to ensure personalized attention and quality mentorship. New cohorts begin every quarter. Early application is recommended as spots fill quickly."
+    answer: "We maintain limited students in each session to ensure personalized attention and high-quality mentorship. New cohorts begin regularly, and early application is recommended as spots fill quickly."
   },
   {
     question: "How much does the program cost?",
@@ -37,8 +37,8 @@ const faqs = [
     answer: "We believe parents are important partners in this journey. While the mentorship is student-focused, we provide regular progress updates and include parent consultations at key milestones. We value your insights about your child while ensuring the student takes ownership of their path."
   },
   {
-    question: "What happens after the 12-week program ends?",
-    answer: "Students who complete the Elite Pathway gain lifetime access to our alumni network and community. We also offer continued support packages for ongoing mentorship, interview prep, and application review as needed."
+    question: "What happens after the program ends?",
+    answer: "Students who complete the Career Discovery Experience gain access to our alumni network and community. We also offer continued support packages for ongoing mentorship, interview prep, and application review as needed."
   }
 ]
 

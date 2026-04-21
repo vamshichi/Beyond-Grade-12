@@ -22,7 +22,7 @@ const mentorCategories = [
   },
   {
     icon: DollarSign,
-    title: "Finance",
+    title: "Business and Finance",
     description: "Financial analysts and investment professionals – what wealth management actually looks like day to day"
   },
   {
@@ -48,7 +48,7 @@ export function MentorsSection() {
         {/* Section Header */}
         <FadeUp className="mx-auto max-w-2xl text-center mb-16">
           <h2 className="font-serif text-3xl font-bold text-gold sm:text-4xl lg:text-5xl">
-            Our Mentors
+            Our Expert Mentors Specialize in
           </h2>
         </FadeUp>
 

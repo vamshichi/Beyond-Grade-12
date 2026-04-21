@@ -84,7 +84,7 @@ export function WhyChooseUsSection() {
         </div>
 
         {/* Trust Indicators */}
-        <FadeUp delay={0.4} className="mt-20 lg:mt-28">
+        {/* <FadeUp delay={0.4} className="mt-20 lg:mt-28">
           <div className="bg-ivory/5 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-ivory/10">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
@@ -102,7 +102,7 @@ export function WhyChooseUsSection() {
               ))}
             </div>
           </div>
-        </FadeUp>
+        </FadeUp> */}
       </div>
     </section>
   )

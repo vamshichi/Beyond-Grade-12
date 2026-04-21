@@ -43,7 +43,7 @@ export function SolutionSection() {
               </ImageReveal>
               
               {/* Floating Badge */}
-              <div className="absolute -bottom-6 -right-6 bg-gold rounded-2xl p-6 shadow-xl">
+              {/* <div className="absolute -bottom-6 -right-6 bg-gold rounded-2xl p-6 shadow-xl">
                 <div className="flex items-center gap-3">
                   <Sparkles className="w-8 h-8 text-navy" />
                   <div>
@@ -51,7 +51,7 @@ export function SolutionSection() {
                     <div className="text-navy/70 text-sm">Success Rate</div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </SlideInLeft>
 

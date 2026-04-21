@@ -179,7 +179,7 @@ export function ContactSection() {
                 Book a Call
               </h3>
               <p className="mt-2 text-sm text-charcoal/60">
-                Schedule a free 30-minute consultation at your convenience.
+                Schedule a free 20-minute consultation at your convenience.
               </p>
               <Button 
                 asChild 

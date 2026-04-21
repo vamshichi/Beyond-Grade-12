@@ -342,7 +342,7 @@ export default function ContactPage() {
                     Book a Free Consultation
                   </h2>
                   <p className="mt-2 text-ivory/70">
-                    Schedule a 30-minute call with our team to discuss your goals and explore how we can help.
+                    Schedule a 20-minute call with our team to discuss your goals and explore how we can help.
                   </p>
                 </div>
                 
@@ -366,11 +366,11 @@ export default function ContactPage() {
                   
                   <div className="flex items-center gap-3 text-ivory/60 mb-6">
                     <Clock className="w-5 h-5" />
-                    <span>30 minutes | Online via Google Meet</span>
+                    <span>20 minutes | Online via Google Meet</span>
                   </div>
                 </div>
                 
-                <Button 
+                {/* <Button 
                   asChild
                   size="lg" 
                   className="w-full bg-gold text-navy hover:bg-gold/90"
@@ -383,7 +383,7 @@ export default function ContactPage() {
                 
                 <p className="text-center text-ivory/50 text-sm mt-4">
                   Powered by Calendly
-                </p>
+                </p> */}
               </div>
             </SlideInRight>
           </div>
