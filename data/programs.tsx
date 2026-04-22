@@ -36,6 +36,32 @@ export const programs = [
           "By the final session, your child will know exactly which paths are theirs, which to let go of completely, and precisely what to do next. No vague advice. No generic next steps. Just clarity.",
       },
     ],
+    howItWorks: [
+      {
+        step: "01",
+        title: "Explore",
+        description: "Discover diverse, high-growth career fields through engaging sessions with industry leaders.",
+        icon: "search",
+      },
+      {
+        step: "02",
+        title: "Engage",
+        description: "Interact with real professionals, ask anything, and hear their unfiltered stories.",
+        icon: "chat",
+      },
+      {
+        step: "03",
+        title: "Clarify",
+        description: "Uncover strengths, interests, and the careers that truly align with who they are.",
+        icon: "compass",
+      },
+      {
+        step: "04",
+        title: "Plan",
+        description: "Walk away with a personalized roadmap and clear next steps for their future.",
+        icon: "rocket",
+      },
+    ],
     networkAccess: null,
     fields: ["Engineering", "Technology", "Healthcare", "Finance", "Law", "Entrepreneurship"],
     quote:
@@ -95,6 +121,32 @@ export const programs = [
           "Communication. Entrepreneurial thinking. Financial awareness. Real-world confidence. We develop the whole person — because who they are is just as important as what they've done.",
       },
     ],
+    howItWorks: [
+      {
+        step: "01",
+        title: "Match",
+        description: "We identify and pair your child with a specialist mentor aligned to their goals and strengths.",
+        icon: "search",
+      },
+      {
+        step: "02",
+        title: "Strategise",
+        description: "Together, we map every course, activity, and milestone with precision over the full year.",
+        icon: "compass",
+      },
+      {
+        step: "03",
+        title: "Build",
+        description: "Month by month, your child's profile takes shape — intentional, distinctive, and compelling.",
+        icon: "rocket",
+      },
+      {
+        step: "04",
+        title: "Stand Out",
+        description: "By Grade 12, they arrive with a story no admissions committee can overlook.",
+        icon: "chat",
+      },
+    ],
     networkAccess: {
       title: "Network access that school will never give them",
       description:
@@ -148,19 +200,46 @@ export const programs = [
       icon: "trending",
       title: "A strategy — not a to-do list",
       description:
-        "University targeting, SOP positioning, application sequencing, deadline architecture. Every decision is deliberate. We build an airtight case that admissions committees can’t ignore.",
+        "University targeting, SOP positioning, application sequencing, deadline architecture. Every decision is deliberate. We build an airtight case that admissions committees can't ignore.",
     },
     {
       icon: "book",
       title: "A personal statement that is unmistakably them",
       description:
-        "We don’t write it for them — that would be a disservice. We excavate what makes your child genuinely compelling, then shape it into a statement that stays with the reader long after the pile is cleared.",
+        "We don't write it for them — that would be a disservice. We excavate what makes your child genuinely compelling, then shape it into a statement that stays with the reader long after the pile is cleared.",
     },
     {
       icon: "person",
       title: "Scholarships that fund the dream",
       description:
         "We identify every scholarship your child qualifies for, build the applications, and optimize for maximum yield. Our first goal is to make this program cost-neutral. Our second is to help them graduate debt-free.",
+    },
+  ],
+
+  howItWorks: [
+    {
+      step: "01",
+      title: "Assess",
+      description: "We conduct a full audit of your child's profile, targets, and timeline to build a precision strategy.",
+      icon: "search",
+    },
+    {
+      step: "02",
+      title: "Position",
+      description: "We craft a compelling narrative — SOPs, activities, and angle — that sets them apart from day one.",
+      icon: "chat",
+    },
+    {
+      step: "03",
+      title: "Execute",
+      description: "Every application, deadline, and scholarship submission is handled with expert oversight.",
+      icon: "compass",
+    },
+    {
+      step: "04",
+      title: "Secure",
+      description: "Walk into results day with offers in hand — accepted, funded, and ready.",
+      icon: "rocket",
     },
   ],
 
@@ -179,7 +258,7 @@ export const programs = [
   ],
 
   quote:
-    "Every week in Grade 12 without a clear strategy is a week your competition is gaining ground. The students who get into their dream universities don’t work harder — they work with the right people, on the right things, at the right time. That is exactly what this program is.",
+    "Every week in Grade 12 without a clear strategy is a week your competition is gaining ground. The students who get into their dream universities don't work harder — they work with the right people, on the right things, at the right time. That is exactly what this program is.",
 
   transformation: {
     before: "Capable and hardworking — but unsure if it's enough.",
