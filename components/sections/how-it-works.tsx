@@ -43,12 +43,14 @@ export function HowItWorksSection() {
           <span className="text-gold text-sm font-medium tracking-widest uppercase">
             The Process
           </span>
+
           <h2 className="mt-4 font-serif text-3xl font-bold text-navy sm:text-4xl lg:text-5xl">
-            Your 12-Week 
-            <span className="text-gold"> Transformation</span>
+            Your Career
+            <span className="text-gold"> Transition Trajectory</span>
           </h2>
+
           <p className="mt-6 text-lg leading-relaxed text-charcoal/70">
-            A proven 4-step framework that transforms uncertainty into a clear, 
+            A proven 4-step framework that transforms uncertainty into a clear,
             actionable roadmap for your future.
           </p>
         </FadeUp>
@@ -58,7 +60,7 @@ export function HowItWorksSection() {
           <div className="relative">
             {/* Connection Line - Desktop */}
             <div className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 lg:block">
-              <motion.div 
+              <motion.div
                 initial={{ scaleY: 0 }}
                 whileInView={{ scaleY: 1 }}
                 viewport={{ once: true }}
@@ -70,26 +72,24 @@ export function HowItWorksSection() {
             <StaggerContainer className="space-y-12 lg:space-y-0" staggerDelay={0.2}>
               {steps.map((step, index) => (
                 <StaggerItem key={step.number}>
-                  <div 
-                    className={`relative lg:flex lg:items-center lg:gap-12 ${
-                      index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                    } ${index > 0 ? 'lg:mt-16' : ''}`}
+                  <div
+                    className={`relative lg:flex lg:items-center lg:gap-12 ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                      } ${index > 0 ? 'lg:mt-16' : ''}`}
                   >
                     {/* Content */}
                     <div className={`lg:w-1/2 ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
-                      <motion.div 
+                      <motion.div
                         whileHover={{ scale: 1.02 }}
-                        className={`rounded-2xl border border-charcoal/10 bg-gradient-to-br ${step.color} p-6 lg:p-8 ${
-                          index % 2 === 0 ? 'lg:ml-auto lg:mr-12' : 'lg:mr-auto lg:ml-12'
-                        } lg:max-w-md relative overflow-hidden group`}
+                        className={`rounded-2xl border border-charcoal/10 bg-gradient-to-br ${step.color} p-6 lg:p-8 ${index % 2 === 0 ? 'lg:ml-auto lg:mr-12' : 'lg:mr-auto lg:ml-12'
+                          } lg:max-w-md relative overflow-hidden group`}
                       >
                         {/* Background number */}
                         <span className="absolute -right-4 -bottom-4 font-serif text-[120px] font-bold text-navy/5 leading-none group-hover:text-gold/10 transition-colors">
                           {step.number}
                         </span>
-                        
+
                         <div className={`relative flex items-center gap-4 ${index % 2 === 0 ? 'lg:flex-row-reverse' : ''}`}>
-                          <motion.div 
+                          <motion.div
                             whileHover={{ rotate: 360 }}
                             transition={{ duration: 0.5 }}
                             className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-navy text-ivory"
@@ -109,7 +109,7 @@ export function HowItWorksSection() {
 
                     {/* Step Number - Center */}
                     <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 lg:block z-10">
-                      <motion.div 
+                      <motion.div
                         whileHover={{ scale: 1.2 }}
                         className="flex h-16 w-16 items-center justify-center rounded-full border-4 border-white bg-navy font-serif text-lg font-bold text-gold shadow-lg"
                       >

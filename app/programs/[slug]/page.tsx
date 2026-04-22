@@ -94,26 +94,8 @@ export default async function ProgramPage({ params }: ProgramPageProps) {
           </FadeUp>
         </div>
       </section>
-
-      {/* ── Stats Strip ── */}
-      <section className=" border-b border-gold/20 py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 rounded-3xl overflow-hidden">
-            {program.stats.map((stat, i) => (
-              <FadeUp key={i}>
-                <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-8 lg:p-10 rounded-2xl border border-gold/20 hover:border-gold/50 hover:from-gray-800 hover:to-gray-700 transition-all duration-300 group cursor-pointer transform hover:scale-105">
-                  <p className="font-serif text-3xl lg:text-4xl font-bold text-gold mb-3 tracking-tight group-hover:text-gold/90 transition-colors">
-                    {stat.value}
-                  </p>
-                  <p className="text-xs text-ivory/60 leading-relaxed font-light group-hover:text-ivory/80 transition-colors">{stat.label}</p>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Differentiators ── */}
+      
+       {/* ── Differentiators ── */}
       <section className="py-20 lg:py-28  border-b border-gold/20 py-10">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <StaggerContainer className="grid gap-6 sm:grid-cols-3">
@@ -133,6 +115,36 @@ export default async function ProgramPage({ params }: ProgramPageProps) {
           </StaggerContainer>
         </div>
       </section>
+
+
+{/* ── Stats Strip ── */}
+<section className="bg-gray-950 border-b border-gold/20">
+  <div className="mx-auto max-w-4xl px-6 lg:px-8 py-16 lg:py-24">
+    <FadeUp>
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold/50 mb-12 text-center font-light">
+        By The Numbers
+      </p>
+    </FadeUp>
+
+    <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-gold/20">
+      {program.stats.map((stat, i) => (
+        <FadeUp key={i}>
+          <div className="px-6 lg:px-10 py-6 text-center group hover:bg-gold/5 transition-colors duration-300 first:pl-0 last:pr-0">
+            <p className="font-serif text-3xl lg:text-4xl font-bold text-gold mb-3 tracking-tight group-hover:text-gold/80 transition-colors duration-300">
+              {stat.value}
+            </p>
+            <div className="w-8 h-px bg-gold/30 mx-auto mb-3 group-hover:w-12 group-hover:bg-gold/50 transition-all duration-300" />
+            <p className="text-xs uppercase tracking-[0.15em] text-ivory/45 leading-relaxed font-light group-hover:text-ivory/65 transition-colors duration-300">
+              {stat.label}
+            </p>
+          </div>
+        </FadeUp>
+      ))}
+    </div>
+  </div>
+</section>
+
+     
 
       {/* ── Network Access Card (optional — Future Builder only) ── */}
       {program.networkAccess && (

@@ -112,7 +112,7 @@ export default function AboutPage() {
             <SlideInLeft>
               <ImageReveal className="rounded-2xl overflow-hidden">
                 <Image
-                  src="/images/about-mission.jpg"
+                  src="/images/m&v.png"
                   alt="Our mission in action"
                   width={600}
                   height={500}

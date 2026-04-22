@@ -61,7 +61,7 @@ export function FlagshipCard({ program }: FlagshipCardProps) {
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-gold" />
                   <span className="text-sm text-ivory/60">Format</span>
-                  <span className="text-sm font-semibold text-ivory ml-1">Group + 1-on-1</span>
+                  <span className="text-sm font-semibold text-ivory ml-1">Cohort Session</span>
                 </div>
               </div>
 

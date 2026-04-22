@@ -17,19 +17,26 @@ export function ProgramsSection() {
 
         {/* Section Header */}
         <FadeUp className="mx-auto max-w-3xl text-center mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full bg-gold/10 px-4 py-2 mb-6">
-            <Star className="h-4 w-4 text-gold fill-gold" />
-            <span className="text-sm font-medium text-gold">Our Programs</span>
-          </div>
-          <h2 className="font-serif text-3xl font-bold text-navy sm:text-4xl lg:text-5xl">
-            Pathways to
-            <span className="text-gold"> Success</span>
-          </h2>
-          <p className="mt-6 text-lg leading-relaxed text-charcoal/70">
-            Choose the program that fits your journey. Each program is designed with
-            expert mentorship and personalized guidance to help you achieve your goals.
-          </p>
-        </FadeUp>
+  <div className="inline-flex items-center gap-2 rounded-full bg-gold/10 px-4 py-2 mb-6">
+    <Star className="h-4 w-4 text-gold fill-gold" />
+    <span className="text-sm font-medium text-gold">Our Programs</span>
+  </div>
+
+  <h2 className="font-serif text-3xl font-bold text-navy sm:text-4xl lg:text-5xl">
+    Pathways to
+    <span className="text-gold"> Success</span>
+  </h2>
+
+  <p className="mt-6 text-lg leading-relaxed text-charcoal/70">
+    Choose the program that fits your journey. Each program is designed with
+    expert mentorship and personalized guidance to help you achieve your goals.
+  </p>
+
+  {/* NEW HEADING */}
+  <h3 className="mt-10 text-2xl sm:text-2xl font-semibold tracking-wide text-gold uppercase">
+    For All High School Students (Grade 9–12)
+  </h3>
+</FadeUp>
 
         {/* ── Flagship Program ── */}
         <FadeUp className="mb-6">
@@ -49,7 +56,7 @@ export function ProgramsSection() {
             <div className="flex items-center gap-2 px-4">
               <Users className="h-5 w-5 text-navy" />
               <h3 className="font-serif text-2xl font-bold text-navy sm:text-3xl whitespace-nowrap">
-                Exclusive 1 on 1 Mentorship Programs
+                Increase the font of this and make it more attractive
               </h3>
             </div>
             <div className="h-px flex-1 bg-gradient-to-r from-transparent via-charcoal/20 to-transparent" />
