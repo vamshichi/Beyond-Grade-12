@@ -36,6 +36,46 @@ export const programs = [
           "By the final session, your child will know exactly which paths are theirs, which to let go of completely, and precisely what to do next. No vague advice. No generic next steps. Just clarity.",
       },
     ],
+    // ── NEW: Image-2 layout data ──────────────────────────────────────────────
+    highlights: [
+      {
+        icon: "users",
+        title: "Real World Experts",
+        description:
+          "Learn directly from accomplished professionals living the careers. Unfiltered. Unscripted. Real.",
+      },
+      {
+        icon: "calendar",
+        title: "A Day in Their World",
+        description:
+          "See what a real day looks like — the wins, the challenges, and everything in between. No sugarcoating.",
+      },
+      {
+        icon: "target",
+        title: "Clarity That Creates Confidence",
+        description:
+          "Walk away with crystal-clear answers, the right next steps, and the confidence to own their future.",
+      },
+      {
+        icon: "briefcase",
+        title: "Skills That Truly Matter",
+        description:
+          "Discover the skills, mindset, and habits that set the top 1% apart in their fields.",
+      },
+      {
+        icon: "compass",
+        title: "From Their Journey to Yours",
+        description:
+          "Hear their story — the pivots, the setbacks, the breakthroughs. Real lessons your child won't find in textbooks.",
+      },
+    ],
+    centerHeadline: {
+      label: "Career Discovery Experience",
+      line1: "REAL INSIGHTS.",
+      line2: "REAL DIRECTION.",
+      subheading: "FIVE GAME-CHANGING HIGHLIGHTS",
+    },
+    // ─────────────────────────────────────────────────────────────────────────
     howItWorks: [
       {
         step: "01",
@@ -121,6 +161,44 @@ export const programs = [
           "Communication. Entrepreneurial thinking. Financial awareness. Real-world confidence. We develop the whole person — because who they are is just as important as what they've done.",
       },
     ],
+    highlights: [
+      {
+        icon: "users",
+        title: "Dedicated Specialist Mentor",
+        description:
+          "Matched specifically to your child's goals — not a generalist. Someone who has been exactly where your child is going.",
+      },
+      {
+        icon: "calendar",
+        title: "Course Strategy That Counts",
+        description:
+          "Every subject chosen with purpose. Every year mapped deliberately toward the programs that matter most.",
+      },
+      {
+        icon: "target",
+        title: "A Profile Built With Intent",
+        description:
+          "Not random activities. Not checkbox volunteering. Every experience handpicked to tell one compelling, undeniable story.",
+      },
+      {
+        icon: "briefcase",
+        title: "Real-World Confidence",
+        description:
+          "Communication. Leadership. Financial literacy. We develop the whole person — because who they are matters as much as what they've done.",
+      },
+      {
+        icon: "compass",
+        title: "From Good to Undeniable",
+        description:
+          "By Grade 12, your child arrives with a profile that stops admissions committees in their tracks. Built over years, not weeks.",
+      },
+    ],
+    centerHeadline: {
+      label: "Future Builder Program",
+      line1: "REAL STRATEGY.",
+      line2: "REAL RESULTS.",
+      subheading: "FIVE DEFINING ADVANTAGES",
+    },
     howItWorks: [
       {
         step: "01",
@@ -216,6 +294,44 @@ export const programs = [
     },
   ],
 
+  highlights: [
+    {
+      icon: "users",
+      title: "A Team of Specialists",
+      description:
+        "Not one generalist — the right expert for every part of the process. Strategy, writing, scholarships. Each handled by the best person for it.",
+    },
+    {
+      icon: "calendar",
+      title: "Every Deadline. Owned.",
+      description:
+        "Application sequencing, submission timelines, scholarship windows. Nothing slips. Nothing is left to the last minute.",
+    },
+    {
+      icon: "target",
+      title: "Precision University Targeting",
+      description:
+        "We build a shortlist based on your child's profile, aspirations, and realistic chances — not wishful thinking or guesswork.",
+    },
+    {
+      icon: "briefcase",
+      title: "A Statement That Is Unmistakably Them",
+      description:
+        "We excavate what makes your child genuinely compelling and shape it into a personal statement that stays with the reader long after the pile is cleared.",
+    },
+    {
+      icon: "compass",
+      title: "Scholarships That Fund The Dream",
+      description:
+        "We identify every scholarship your child qualifies for, build the applications, and optimise for maximum yield. Our goal: make this program cost-neutral.",
+    },
+  ],
+  centerHeadline: {
+    label: "University Admissions Accelerator",
+    line1: "REAL OFFERS.",
+    line2: "REAL FUTURES.",
+    subheading: "FIVE THINGS THAT CHANGE EVERYTHING",
+  },
   howItWorks: [
     {
       step: "01",

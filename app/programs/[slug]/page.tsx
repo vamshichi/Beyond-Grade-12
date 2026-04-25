@@ -1,6 +1,17 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { ArrowRight, BookOpen, TrendingUp, Users, Quote, Search, MessageCircle, Compass, Rocket } from "lucide-react"
+import {
+  ArrowRight,
+  Users,
+  Quote,
+  Search,
+  MessageCircle,
+  Compass,
+  Rocket,
+  Target,
+  Briefcase,
+  CalendarDays,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { programs } from "@/data/programs"
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/motion"
@@ -25,14 +36,6 @@ export async function generateMetadata({ params }: ProgramPageProps) {
   }
 }
 
-const DifferentiatorIcon = ({ type }: { type: string }) => {
-  const cls = "w-5 h-5 text-ivory"
-  if (type === "arrow") return <ArrowRight className={cls} />
-  if (type === "trending") return <TrendingUp className={cls} />
-  if (type === "book") return <BookOpen className={cls} />
-  return <Users className={cls} />
-}
-
 const StepIcon = ({ type }: { type: string }) => {
   const cls = "w-6 h-6 text-gold"
   if (type === "search") return <Search className={cls} />
@@ -41,6 +44,41 @@ const StepIcon = ({ type }: { type: string }) => {
   if (type === "rocket") return <Rocket className={cls} />
   return <ArrowRight className={cls} />
 }
+
+// ── NEW: Highlight icon for Image-2 style cards ───────────────────────────────
+const HighlightIcon = ({ type }: { type: string }) => {
+  const cls = "w-7 h-7 text-[#c9a84c]"
+  if (type === "users") return <Users className={cls} />
+  if (type === "calendar") return <CalendarDays className={cls} />
+  if (type === "target") return <Target className={cls} />
+  if (type === "briefcase") return <Briefcase className={cls} />
+  if (type === "compass") return <Compass className={cls} />
+  return <Users className={cls} />
+}
+
+const HighlightCard = ({
+  item,
+}: {
+  item: { icon: string; title: string; description: string }
+}) => (
+  <div className="bg-[#f5f0e6] rounded-2xl p-7 flex flex-col gap-3 h-full">
+    {/* Icon */}
+    <div className="w-11 h-11 flex items-center justify-center">
+      <HighlightIcon type={item.icon} />
+    </div>
+    {/* Title */}
+    <h3 className="font-sans font-bold text-[#141829] text-[17px] leading-snug">
+      {item.title}
+    </h3>
+    {/* Gold separator */}
+    <div className="w-8 h-[2px] bg-[#c9a84c]" />
+    {/* Description */}
+    <p className="text-[#4a4030] text-sm leading-relaxed font-normal">
+      {item.description}
+    </p>
+  </div>
+)
+// ─────────────────────────────────────────────────────────────────────────────
 
 export default async function ProgramPage({ params }: ProgramPageProps) {
   const { slug } = await params
@@ -52,6 +90,12 @@ export default async function ProgramPage({ params }: ProgramPageProps) {
   const lastWord = descWords.pop()
   const leadWords = descWords.join(" ")
 
+  // New highlights layout data
+  const highlights = (program as any).highlights as
+    { icon: string; title: string; description: string }[]
+  const centerHeadline = (program as any).centerHeadline as
+    { label: string; line1: string; line2: string; subheading: string }
+
   return (
     <div className="min-h-screen ">
       <Header />
@@ -60,9 +104,9 @@ export default async function ProgramPage({ params }: ProgramPageProps) {
       <section
         className="relative bg-gray-950 pt-20 pb-24 lg:pt-32 lg:pb-36 overflow-hidden"
         style={{
-          backgroundImage: 'url(/hero-bg.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundImage: "url(/hero-bg.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       >
         {/* Overlay */}
@@ -105,39 +149,41 @@ export default async function ProgramPage({ params }: ProgramPageProps) {
         </div>
       </section>
 
-      {/* ── Differentiators ── */}
-      <section className="bg-gray-950 border-b border-gold/20 py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <StaggerContainer className="flex flex-col sm:flex-row items-stretch gap-0">
-            {program.differentiators.map((item, i) => (
-              <div key={i} className="flex items-center flex-1 min-w-0">
-                <StaggerItem className="flex-1 min-w-0">
-                  <div className="bg-gradient-to-b from-[#1a2035] to-[#141829] border border-white/10 rounded-2xl p-8 flex flex-col items-center text-center h-full group hover:border-gold/40 transition-all duration-300 hover:shadow-xl hover:shadow-gold/10">
-                    {/* Icon */}
-                    <div className="w-16 h-16 rounded-2xl bg-gray-700/50 border border-white/10 flex items-center justify-center mb-6 group-hover:border-gold/30 transition-colors duration-300">
-                      <DifferentiatorIcon type={item.icon} />
-                    </div>
-                    {/* Title in gold */}
-                    <h3 className="font-serif font-semibold text-gold text-base leading-snug mb-4">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-ivory/65 leading-relaxed font-light">
-                      {item.description}
-                    </p>
-                  </div>
-                </StaggerItem>
+      {/* ── Differentiators / Highlights ── */}
+      <section className="bg-[#0d1117] border-b border-gold/20 py-16 lg:py-24 overflow-hidden">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <FadeUp>
+            {/* TOP ROW: Card | Headline | Card */}
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.15fr_1fr] gap-5 mb-5">
+              <HighlightCard item={highlights[0]} />
 
-                {/* Gold circular arrow connector between cards */}
-                {i < program.differentiators.length - 1 && (
-                  <div className="hidden sm:flex shrink-0 items-center justify-center w-10 z-10 -mx-1">
-                    <div className="w-9 h-9 rounded-full bg-[#c9a84c] flex items-center justify-center shadow-lg shadow-gold/30">
-                      <ArrowRight className="w-4 h-4 text-gray-950" />
-                    </div>
-                  </div>
-                )}
+              {/* Center Headline */}
+              <div className="flex flex-col items-center justify-center text-center px-4 py-10 lg:py-0">
+                <p className="text-[10px] font-bold uppercase tracking-[0.35em] text-[#c9a84c] mb-3">
+                  {centerHeadline.label}
+                </p>
+                <div className="w-10 h-px bg-[#c9a84c] mb-7" />
+                <h2 className="font-sans text-4xl xl:text-5xl font-black text-ivory leading-[1.05] uppercase mb-1 tracking-tight">
+                  {centerHeadline.line1}
+                </h2>
+                <h2 className="font-sans text-4xl xl:text-5xl font-black text-[#c9a84c] leading-[1.05] uppercase mb-8 tracking-tight">
+                  {centerHeadline.line2}
+                </h2>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-ivory/40">
+                  {centerHeadline.subheading}
+                </p>
               </div>
-            ))}
-          </StaggerContainer>
+
+              <HighlightCard item={highlights[1]} />
+            </div>
+
+            {/* BOTTOM ROW: 3 Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+              <HighlightCard item={highlights[2]} />
+              <HighlightCard item={highlights[3]} />
+              <HighlightCard item={highlights[4]} />
+            </div>
+          </FadeUp>
         </div>
       </section>
 
@@ -231,8 +277,9 @@ export default async function ProgramPage({ params }: ProgramPageProps) {
             {program.stats.map((stat, i) => (
               <FadeUp key={i}>
                 <div
-                  className={`px-6 lg:px-8 py-4 text-center group hover:bg-gold/5 transition-colors duration-300 ${i > 0 ? "border-l border-[#c9a84c]/20" : ""
-                    }`}
+                  className={`px-6 lg:px-8 py-4 text-center group hover:bg-gold/5 transition-colors duration-300 ${
+                    i > 0 ? "border-l border-[#c9a84c]/20" : ""
+                  }`}
                 >
                   {/* Stat icon circle */}
                   <div className="flex justify-center mb-4">
