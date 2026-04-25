@@ -31,7 +31,7 @@ export default function Home() {
         <MentorsSection />
         {/* <MentorsSection /> */}
         <ResultsSection />
-        <ParentsSection />
+        {/* <ParentsSection /> */}
         <TestimonialsSection />
         <FAQSection />
         <ContactSection />

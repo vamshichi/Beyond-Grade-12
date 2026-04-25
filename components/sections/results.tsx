@@ -88,7 +88,7 @@ export function ResultsSection() {
         </div>
 
         {/* Transformation Cards */}
-        <div className="mt-20 lg:mt-28">
+        {/* <div className="mt-20 lg:mt-28">
           <FadeUp className="text-center mb-12">
             <h3 className="font-serif text-2xl font-bold text-navy">
               Before & After Transformations
@@ -103,34 +103,34 @@ export function ResultsSection() {
                   className="overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-xl transition-all duration-300"
                 >
                   {/* Before */}
-                  <div className="bg-charcoal/5 p-6 border-b border-charcoal/10">
+                  {/* <div className="bg-charcoal/5 p-6 border-b border-charcoal/10">
                     <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-charcoal/40 mb-2">
                       <span className="w-4 h-px bg-charcoal/40" />
                       Before
                     </span>
                     <p className="font-medium text-charcoal/60">{item.before}</p>
-                  </div>
+                  </div> */}
                   
                   {/* Arrow */}
-                  <div className="flex items-center justify-center bg-navy py-4">
+                  {/* <div className="flex items-center justify-center bg-navy py-4">
                     <motion.div
                       animate={{ x: [0, 5, 0] }}
                       transition={{ duration: 1.5, repeat: Infinity }}
                     >
                       <ArrowRight className="h-5 w-5 text-gold" />
                     </motion.div>
-                  </div>
+                  </div> */}
                   
                   {/* After */}
-                  <div className="bg-white p-6">
+                  {/* <div className="bg-white p-6">
                     <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-gold mb-2">
                       <span className="w-4 h-px bg-gold" />
                       After
                     </span>
                     <p className="font-semibold text-navy text-lg">{item.after}</p>
-                    
+                     */}
                     {/* Student Info */}
-                    <div className="mt-6 flex items-center gap-3 pt-4 border-t border-charcoal/10">
+                    {/* <div className="mt-6 flex items-center gap-3 pt-4 border-t border-charcoal/10"> */}
                       {/* <div className="relative w-10 h-10 rounded-full overflow-hidden">
                         <Image
                           src={item.image}
@@ -139,20 +139,20 @@ export function ResultsSection() {
                           className="object-cover"
                         />
                       </div> */}
-                      <div>
+                      {/* <div>
                         <p className="text-sm font-medium text-navy">{item.student}</p>
                         <p className="text-xs text-gold">{item.university}</p>
-                      </div>
-                    </div>
-                  </div>
+                      </div> */}
+                    {/* </div> */}
+                  {/* </div>
                 </motion.div>
               </StaggerItem>
             ))}
           </StaggerContainer>
-        </div>
+        </div>  */}
 
         {/* University Logos Marquee */}
-        <FadeUp delay={0.3} className="mt-20 lg:mt-28">
+        {/* <FadeUp delay={0.3} className="mt-20 lg:mt-28">
           <p className="text-center text-sm text-charcoal/60 mb-8">
             Our students have been admitted to top universities worldwide
           </p>
@@ -175,7 +175,7 @@ export function ResultsSection() {
               ))}
             </motion.div>
           </div>
-        </FadeUp>
+        </FadeUp> */}
       </div>
     </section>
   )
