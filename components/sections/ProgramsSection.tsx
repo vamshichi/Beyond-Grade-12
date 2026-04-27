@@ -43,7 +43,7 @@ export function ProgramsSection() {
           <div className="flex items-center gap-2 mb-6">
             <Crown className="h-5 w-5 text-gold fill-gold/30" />
             <span className="text-sm font-semibold uppercase tracking-widest text-gold">
-              Flagship Program
+              Flagship Cohort Program
             </span>
           </div>
           <FlagshipCard program={flagship} />

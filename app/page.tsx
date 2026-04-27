@@ -30,11 +30,12 @@ export default function Home() {
         <WhyChooseUsSection />
         <MentorsSection />
         {/* <MentorsSection /> */}
-        <ResultsSection />
+        {/* <ResultsSection /> */}
         {/* <ParentsSection /> */}
-        <TestimonialsSection />
-        <FAQSection />
+        {/* <TestimonialsSection /> */}
         <ContactSection />
+        <FAQSection />
+        
       </main>
       <Footer />
     </>

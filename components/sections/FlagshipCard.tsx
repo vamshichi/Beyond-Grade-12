@@ -77,19 +77,15 @@ export function FlagshipCard({ program }: FlagshipCardProps) {
             </div>
 
             {/* Right: decorative stat block */}
-            <div className="hidden lg:block shrink-0">
-              <div className="w-56 h-56 rounded-2xl border border-gold/20 bg-white/5 backdrop-blur-sm flex flex-col items-center justify-center gap-3 p-6 group-hover:border-gold/40 transition-colors">
-                <Sparkles className="h-8 w-8 text-gold" />
-                <p className="text-ivory/50 text-xs uppercase tracking-widest text-center">
-                  Most Popular
-                </p>
-                <div className="h-px w-10 bg-gold/40" />
-                <p className="text-ivory text-center text-sm font-medium leading-snug">
-                  Career Discovery<br />
-                  <span className="text-gold">Program</span>
-                </p>
-              </div>
-            </div>
+           {/* Right: grade info block */}
+<div className="hidden lg:flex shrink-0">
+  <div className="w-56 h-56 rounded-2xl border border-gold/20 bg-[#1c3d4f] flex items-center justify-center p-6 text-center">
+    <p className="text-ivory text-sm font-medium leading-relaxed">
+      All High School Students <br />
+      <span className="text-gold">(Grade 9–12)</span>
+    </p>
+  </div>
+</div>
 
           </div>
         </div>

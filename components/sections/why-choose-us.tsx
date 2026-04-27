@@ -62,7 +62,7 @@ export function WhyChooseUsSection() {
               <StaggerItem key={item.title}>
                 <motion.div 
                   whileHover={{ y: -8, borderColor: "rgba(197, 164, 109, 0.5)" }}
-                  className="group h-full rounded-2xl border border-ivory/10 bg-ivory/5 backdrop-blur-sm p-8 transition-colors"
+className="group h-full rounded-2xl border border-gray-200 bg-white p-8 shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   <motion.div 
                     whileHover={{ rotate: 360 }}
@@ -71,10 +71,10 @@ export function WhyChooseUsSection() {
                   >
                     <item.icon className="h-7 w-7" />
                   </motion.div>
-                  <h3 className="mt-6 font-serif text-xl font-semibold text-ivory">
+                  <h3 className="mt-6 font-serif text-xl font-semibold text-gray-900">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ivory/60">
+                  <p className="mt-3 text-sm leading-relaxed text-gray-600">
                     {item.description}
                   </p>
                 </motion.div>

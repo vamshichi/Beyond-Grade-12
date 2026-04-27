@@ -102,7 +102,7 @@ export default async function ProgramPage({ params }: ProgramPageProps) {
 
       {/* ── Hero ── */}
       <section
-        className="relative bg-gray-950 pt-20 pb-24 lg:pt-32 lg:pb-36 overflow-hidden"
+        className="relative bg-gray-950 pt-28 pb-28 lg:pt-32 lg:pb-36 overflow-hidden"
         style={{
           backgroundImage: "url(/hero-bg.jpg)",
           backgroundSize: "cover",
@@ -114,8 +114,19 @@ export default async function ProgramPage({ params }: ProgramPageProps) {
 
         <div className="relative mx-auto max-w-4xl px-6 lg:px-8">
           <FadeUp>
+            <div className="text-center mb-10">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
+                {program.title}
+              </h2>
+
+              <p className="mt-3 text-sm sm:text-base text-gold font-medium tracking-wide">
+                {program.gradeRange}
+              </p>
+            </div>
+          </FadeUp>
+          <FadeUp>
             {/* Tags row */}
-            <div className="flex flex-wrap items-center justify-between gap-4 mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <div className="flex flex-wrap items-center justify-between gap-4 mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
               <div className="inline-flex items-center gap-2 rounded-full bg-gold/15 border border-gold/40 px-4 py-2 backdrop-blur-sm hover:bg-gold/20 transition-colors duration-300">
                 <span className="w-2 h-2 rounded-full bg-gold animate-pulse" />
                 <span className="text-xs font-semibold uppercase tracking-wider text-gold/90">
@@ -259,47 +270,47 @@ export default async function ProgramPage({ params }: ProgramPageProps) {
         </section>
       )}
 
-      {/* ── Stats Strip ── */}
-      <section className="bg-gray-950 border-b border-gold/20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8 py-16 lg:py-20">
-          <FadeUp>
-            {/* "By The Numbers" label with flanking lines */}
-            <div className="flex items-center gap-4 mb-14">
-              <div className="h-px flex-1 bg-[#c9a84c]/30" />
-              <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#c9a84c]/60 whitespace-nowrap">
-                By The Numbers
+    {/* ── Stats Strip ── */}
+{program.stats && program.stats.length > 0 && (
+  <section className="bg-gray-950 border-b border-[#c9a84c]/10">
+    <div className="mx-auto max-w-5xl px-6 lg:px-8 py-16 lg:py-20">
+      
+      <FadeUp>
+        <div className="flex items-center gap-4 mb-12">
+          <div className="h-px flex-1 bg-white/10" />
+          <p className="text-xs font-medium uppercase tracking-widest text-white/40">
+            By The Numbers
+          </p>
+          <div className="h-px flex-1 bg-white/10" />
+        </div>
+      </FadeUp>
+
+      <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-white/10">
+        {program.stats.map((stat, i) => (
+          <FadeUp key={i}>
+            <div className="px-6 py-6 text-center group hover:bg-white/5 transition duration-300">
+
+              <div className="flex justify-center mb-4">
+                <div className="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-white/20 transition">
+                  <StepIcon type={["person", "book", "chat", "compass"][i] ?? "compass"} />
+                </div>
+              </div>
+
+              <p className="text-3xl lg:text-4xl font-semibold text-white tracking-tight">
+                {stat.value}
               </p>
-              <div className="h-px flex-1 bg-[#c9a84c]/30" />
+
+              <p className="mt-2 text-xs text-white/50 leading-relaxed max-w-[140px] mx-auto">
+                {stat.label}
+              </p>
+
             </div>
           </FadeUp>
-
-          <div className="grid grid-cols-2 lg:grid-cols-4">
-            {program.stats.map((stat, i) => (
-              <FadeUp key={i}>
-                <div
-                  className={`px-6 lg:px-8 py-4 text-center group hover:bg-gold/5 transition-colors duration-300 ${
-                    i > 0 ? "border-l border-[#c9a84c]/20" : ""
-                  }`}
-                >
-                  {/* Stat icon circle */}
-                  <div className="flex justify-center mb-4">
-                    <div className="w-12 h-12 rounded-full bg-[#1a2035] border border-[#c9a84c]/25 flex items-center justify-center group-hover:border-[#c9a84c]/50 transition-colors duration-300">
-                      <StepIcon type={["person", "book", "chat", "compass"][i] ?? "compass"} />
-                    </div>
-                  </div>
-                  <p className="font-serif text-3xl lg:text-4xl font-bold text-[#c9a84c] mb-2 tracking-tight group-hover:text-[#c9a84c]/80 transition-colors duration-300">
-                    {stat.value}
-                  </p>
-                  <p className="text-[11px] uppercase tracking-[0.12em] text-ivory/45 leading-relaxed font-light group-hover:text-ivory/65 transition-colors duration-300 max-w-[130px] mx-auto">
-                    {stat.label}
-                  </p>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </section>
-
+        ))}
+      </div>
+    </div>
+  </section>
+)}
 
       {/* ── Network Access ── */}
       {program.networkAccess && (

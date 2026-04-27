@@ -1,4 +1,5 @@
 export const programs = [
+  // page 1
   {
     slug: "career-discovery",
     title: "Career Discovery Experience",
@@ -111,7 +112,7 @@ export const programs = [
       after: "Clear. Confident. Moving with absolute intention.",
     },
     features: [
-      "Live sessions with 6+ industry professionals",
+      "Live sessions with 10+ industry professionals",
       "Unscripted Q&A — your questions, their real answers",
       "Structured 4-week discovery framework",
       "Career path clarity report",
@@ -123,6 +124,8 @@ export const programs = [
     fullDescription:
       "Our Career Discovery program provides clarity on your professional path through personalized assessments, mentor guidance, and real-world exposure.",
   },
+
+  // page 2
   {
     slug: "future-builder",
     title: "Future Builder Program",
@@ -138,7 +141,7 @@ export const programs = [
     stats: [
       { value: "1 Year", label: "Dedicated, long-term mentorship — not a short sprint" },
       { value: "Specialist", label: "Mentor matched specifically to your child's goals" },
-      { value: "Zero", label: "Filler activities. Every move is intentional." },
+      { value: "Exclusive", label: "Filler activities. Every move is intentional." },
       { value: "1 outcome", label: "A profile built to be undeniable" },
     ],
     differentiators: [
@@ -164,7 +167,7 @@ export const programs = [
     highlights: [
       {
         icon: "users",
-        title: "Dedicated Specialist Mentor",
+        title: "Dedicated Specialist Mentors",
         description:
           "Matched specifically to your child's goals — not a generalist. Someone who has been exactly where your child is going.",
       },
@@ -203,7 +206,7 @@ export const programs = [
       {
         step: "01",
         title: "Match",
-        description: "We identify and pair your child with a specialist mentor aligned to their goals and strengths.",
+        description: "We identify and pair your child with a specialist mentors aligned to their goals and strengths.",
         icon: "search",
       },
       {
@@ -250,6 +253,8 @@ export const programs = [
     fullDescription:
       "The Future Builder Program is designed to unlock your full potential through personalised 1-on-1 mentorship and a deliberate profile-building strategy.",
   },
+
+  // page 3
  {
   slug: "university-accelerator",
   title: "University Admissions Accelerator",
@@ -267,10 +272,10 @@ export const programs = [
   cohortSize: "1-on-1",
 
   stats: [
-    { value: "6 mo", label: "Complete end-to-end support" },
-    { value: "Specialist", label: "Mentors matched to each part of the process" },
-    { value: "Top unis", label: "Targeted with precision — not guesswork" },
-    { value: "Nothing", label: "Leaves without our sign-off" },
+    // { value: "6 mo", label: "Complete end-to-end support" },
+    // { value: "Specialist", label: "Mentors matched to each part of the process" },
+    // { value: "Top unis", label: "Targeted with precision — not guesswork" },
+    // { value: "Nothing", label: "Leaves without our sign-off" },
   ],
 
   differentiators: [
@@ -315,7 +320,7 @@ export const programs = [
     },
     {
       icon: "briefcase",
-      title: "A Statement That Is Unmistakably Them",
+      title: "Strategic Storytelling",
       description:
         "We excavate what makes your child genuinely compelling and shape it into a personal statement that stays with the reader long after the pile is cleared.",
     },

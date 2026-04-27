@@ -15,6 +15,11 @@ const durationOverride: Record<string, string> = {
   "university-program": "6 Months",
 }
 
+const gradeTagMap: Record<string, string> = {
+  "future-builder-program": "Uniquely Designed For (Grade 9–11)",
+  "university-program": "Purely (Grade 12)",
+}
+
 export function MentorshipCard({ program }: MentorshipCardProps) {
   const duration = durationOverride[program.slug] ?? program.duration
 
@@ -43,12 +48,12 @@ export function MentorshipCard({ program }: MentorshipCardProps) {
           <div className="relative flex flex-col h-full px-8 py-10">
 
             {/* Tag */}
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-gold/15 border border-gold/30 px-4 py-1.5 w-fit">
+            {/* <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-gold/15 border border-gold/30 px-4 py-1.5 w-fit">
               <Sparkles className="h-3.5 w-3.5 text-gold fill-gold/60" />
               <span className="text-xs font-semibold uppercase tracking-widest text-gold">
                 1-on-1 Mentorship
               </span>
-            </div>
+            </div> */}
 
             {/* Title */}
             <h3 className="font-serif text-2xl sm:text-3xl font-bold text-ivory mb-4 group-hover:text-gold transition-colors duration-300">
@@ -81,6 +86,17 @@ export function MentorshipCard({ program }: MentorshipCardProps) {
             <div className="flex items-center gap-2 mb-8 p-3 rounded-xl bg-white/5 border border-gold/10 w-fit">
               <Clock className="h-4 w-4 text-gold" />
               <span className="text-sm font-semibold text-ivory">{duration}</span>
+            </div>
+
+            {/* ✅ ADD HERE */}
+            <div className="mb-4">
+              <div className="bg-[#1c3d4f] text-center py-2 px-3 rounded-lg border border-gold/20">
+                <p className="text-xs text-ivory font-medium leading-snug">
+                  {program.slug === "future-builder"
+                    ? "Uniquely Designed For (Grade 9–11)"
+                    : "Purely (Grade 12)"}
+                </p>
+              </div>
             </div>
 
             {/* CTA */}
