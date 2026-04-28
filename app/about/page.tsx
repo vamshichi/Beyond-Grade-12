@@ -17,6 +17,10 @@ import {
   DrawLine
 } from "@/components/motion"
 import { Target, Eye, Heart, Users, BookOpen, Award, ArrowRight } from "lucide-react"
+import { StoryQuoteSection } from "@/components/sections/StoryQuoteSection"
+import { FamilySection } from "@/components/sections/FamilySection"
+import { NumbersSection } from "@/components/sections/NumbersSection"
+import { OurPromiseSection } from "@/components/sections/OurPromiseSection"
 
 const values = [
   {
@@ -78,34 +82,67 @@ export default function AboutPage() {
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
         <div className="absolute inset-0 bg-navy" />
         <div className="absolute inset-0 bg-[url('/images/testimonial-bg.jpg')] opacity-20 bg-cover bg-center" />
+
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
+
             <FadeUp>
               <span className="inline-block px-4 py-2 bg-gold/20 text-gold rounded-full text-sm font-medium tracking-wide mb-6">
-                OUR STORY
+                ABOUT BEYOND GRADE 12
               </span>
             </FadeUp>
+
             <FadeUp delay={0.1}>
-              <h1 className="font-serif text-4xl font-bold text-ivory sm:text-5xl lg:text-6xl xl:text-7xl text-balance">
-                Transforming Futures,
+              <h1 className="font-serif text-4xl font-bold text-ivory sm:text-5xl lg:text-6xl xl:text-7xl text-balance leading-tight">
+                From our family
                 <br />
-                <span className="text-gold">One Student at a Time</span>
+                <span className="text-gold">to yours.</span>
               </h1>
             </FadeUp>
+
             <FadeUp delay={0.2}>
               <p className="mt-6 max-w-3xl mx-auto text-lg text-ivory/80 leading-relaxed text-center">
-                Beyond Grade 12 is an elite mentorship academy where high school students
-                discover their direction, build an undeniable profile, and earn their place
-                at top universities guided by accomplished professionals across Engineering,
-                Technology, Healthcare, Finance, and Law who deliver the unfiltered truth,
-                and a real roadmap to the future they deserve.
+                Five doctors. One family. Raised together on a single conviction — that{" "}
+                <span className="text-gold">
+                  knowledge is not just acquired. It is lived, earned across continents, and passed forward with intention.
+                </span>
               </p>
             </FadeUp>
+
+            {/* Stats */}
+            <FadeUp delay={0.3}>
+              <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 border border-gold/20 rounded-xl p-6 backdrop-blur-sm">
+
+                <div className="text-center">
+                  <h3 className="text-2xl font-serif text-ivory">5</h3>
+                  <p className="text-xs text-ivory/70 mt-1">DOCTORS ON THE CORE TEAM</p>
+                </div>
+
+                <div className="text-center">
+                  <h3 className="text-2xl font-serif text-ivory">$500K+</h3>
+                  <p className="text-xs text-ivory/70 mt-1">IN SCHOLARSHIPS WON BY THIS FAMILY</p>
+                </div>
+
+                <div className="text-center">
+                  <h3 className="text-2xl font-serif text-ivory">4</h3>
+                  <p className="text-xs text-ivory/70 mt-1">CONTINENTS OF LIVED EXPERIENCE</p>
+                </div>
+
+                <div className="text-center">
+                  <h3 className="text-2xl font-serif text-ivory">50+</h3>
+                  <p className="text-xs text-ivory/70 mt-1">YEARS OF ACADEMIC LEADERSHIP</p>
+                </div>
+
+              </div>
+            </FadeUp>
+
           </div>
         </div>
       </section>
 
-      {/* Mission & Vision */}
+      <StoryQuoteSection />
+
+      {/* Mission & Vision
       <section className="py-20 lg:py-32 bg-ivory">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -160,40 +197,67 @@ export default function AboutPage() {
             </SlideInRight>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* Values */}
+      {/* Comparison Section */}
       <section className="py-20 lg:py-32 bg-navy">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <FadeUp className="text-center mb-16">
-            <span className="text-gold text-sm font-medium tracking-widest uppercase">What Drives Us</span>
-            <h2 className="mt-4 font-serif text-3xl font-bold text-ivory sm:text-4xl lg:text-5xl">
-              Our Core Values
-            </h2>
-          </FadeUp>
 
-          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8" staggerDelay={0.1}>
-            {values.map((value) => (
-              <StaggerItem key={value.title}>
-                <div className="bg-ivory/5 backdrop-blur-sm border border-ivory/10 rounded-2xl p-8 h-full hover:bg-ivory/10 transition-colors duration-300">
-                  <div className="w-14 h-14 rounded-xl bg-gold/20 flex items-center justify-center mb-6">
-                    <value.icon className="w-7 h-7 text-gold" />
-                  </div>
-                  <h3 className="font-serif text-xl font-semibold text-ivory mb-3">
-                    {value.title}
-                  </h3>
-                  <p className="text-ivory/60 leading-relaxed">
-                    {value.description}
-                  </p>
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
+
+            {/* LEFT SIDE */}
+            <FadeUp>
+              <div>
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-8 h-[1px] bg-gold" />
+                  <span className="text-xs tracking-widest text-ivory/60 uppercase">
+                    What Most Students Get
+                  </span>
                 </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+
+                <ul className="space-y-5 text-ivory/40 text-sm leading-relaxed">
+                  <li>— Generic advice from people who haven’t walked the path</li>
+                  <li>— One-size-fits-all guidance built for the average student</li>
+                  <li>— 20 minutes a year with a counsellor managing 400 students</li>
+                  <li>— Surface-level information they could find on Google</li>
+                  <li>— Scholarship advice from someone who has never won one</li>
+                </ul>
+              </div>
+            </FadeUp>
+
+            {/* RIGHT SIDE */}
+            <FadeUp delay={0.2}>
+              <div>
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-8 h-[1px] bg-gold" />
+                  <span className="text-xs tracking-widest text-gold uppercase">
+                    What The Syed Family Delivers
+                  </span>
+                </div>
+
+                <ul className="space-y-5 text-ivory text-sm leading-relaxed">
+                  <li>→ Mentorship from five doctors who personally won what your student is chasing</li>
+                  <li>→ A strategy built from scratch — around who your student actually is</li>
+                  <li>→ Dedicated mentors with the time, depth, and commitment they deserve</li>
+                  <li>→ Unfiltered truth from people who lived these careers across four continents</li>
+                  <li>→ Scholarship intelligence from a family that collectively won over $500,000</li>
+                </ul>
+              </div>
+            </FadeUp>
+
+          </div>
+
         </div>
       </section>
 
+      <FamilySection />
+
+      <NumbersSection />
+
+      <OurPromiseSection />
+
       {/* Timeline */}
-      <section className="py-20 lg:py-32 bg-ivory">
+      {/* <section className="py-20 lg:py-32 bg-ivory">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeUp className="text-center mb-16">
             <span className="text-gold text-sm font-medium tracking-widest uppercase">Our Journey</span>
@@ -204,9 +268,9 @@ export default function AboutPage() {
 
           <div className="relative">
             {/* Timeline line */}
-            <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gold/30 transform -translate-x-1/2" />
+      {/* <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gold/30 transform -translate-x-1/2" /> */}
 
-            <StaggerContainer className="space-y-12" staggerDelay={0.15}>
+      {/* <StaggerContainer className="space-y-12" staggerDelay={0.15}>
               {milestones.map((milestone, index) => (
                 <StaggerItem key={milestone.year}>
                   <div className={`flex flex-col lg:flex-row items-center gap-8 ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
@@ -220,13 +284,13 @@ export default function AboutPage() {
                   </div>
                 </StaggerItem>
               ))}
-            </StaggerContainer>
-          </div>
-        </div>
-      </section>
+            </StaggerContainer> */}
+      {/* </div> */}
+      {/* </div> */}
+      {/* </section>  */}
 
       {/* Leadership Team */}
-      <section className="py-20 lg:py-32 bg-charcoal/5">
+      {/* <section className="py-20 lg:py-32 bg-charcoal/5">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeUp className="text-center mb-16">
             <span className="text-gold text-sm font-medium tracking-widest uppercase">Leadership</span>
@@ -263,17 +327,18 @@ export default function AboutPage() {
             ))}
           </StaggerContainer>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA */}
       <section className="py-20 lg:py-32 bg-gold">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <FadeUp>
             <h2 className="font-serif text-3xl font-bold text-navy sm:text-4xl lg:text-5xl">
-              Ready to Begin Your Journey?
+              From our family to yours —
+              let's build this together.
             </h2>
             <p className="mt-6 text-navy/80 max-w-2xl mx-auto text-lg">
-              Join thousands of students who have found clarity and direction with Beyond Grade 12.
+              Limited spots · Personalised mentorship · Real outcomes
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-navy text-ivory hover:bg-navy/90 px-8">
