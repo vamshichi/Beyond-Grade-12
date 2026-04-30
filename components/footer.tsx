@@ -212,7 +212,7 @@ export function Footer() {
                   <div className="w-8 h-8 rounded-lg bg-ivory/10 flex items-center justify-center group-hover:bg-gold/20 transition-colors">
                     <Phone className="h-4 w-4" />
                   </div>
-                  +1 (234) 567-890
+                  289-800-8024
                 </a>
               </li>
               <li>
@@ -221,8 +221,7 @@ export function Footer() {
                     <MapPin className="h-4 w-4" />
                   </div>
                   <span>
-                    123 Education Lane<br />
-                    Academic City, AC 12345
+                    Toronto, Ontario
                   </span>
                 </div>
               </li>
