@@ -137,7 +137,7 @@ export function getLeadConfirmationEmail(name: string) {
         
         <div style="text-align: center; margin: 30px 0;">
           <a href="https://wa.me/1234567890" style="display: inline-block; background-color: #25D366; color: #FFFFFF; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold; margin: 5px;">WhatsApp Us</a>
-          <a href="mailto:hello@beyondgrade12.com" style="display: inline-block; background-color: #0B1F3A; color: #F8F6F2; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold; margin: 5px;">Email Us</a>
+          <a href="mailto:info@beyondgrade12.ca" style="display: inline-block; background-color: #0B1F3A; color: #F8F6F2; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold; margin: 5px;">Email Us</a>
         </div>
         
         <p style="margin-bottom: 0;">Looking forward to helping you achieve your dreams!</p>

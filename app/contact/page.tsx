@@ -47,8 +47,8 @@ const contactMethods = [
     icon: Mail,
     title: "Email Us",
     description: "We reply within 24 hours",
-    value: "hello@beyondgrade12.com",
-    action: "mailto:hello@beyondgrade12.com"
+    value: "info@beyondgrade12.ca",
+    action: "mailto:info@beyondgrade12.ca"
   },
   {
     icon: MessageCircle,

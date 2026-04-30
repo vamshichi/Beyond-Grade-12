@@ -19,8 +19,8 @@ const navLinks = [
       label: program.title
     }))
   },
-  { href: "/mentors", label: "Mentors" },
-  { href: "/testimonials", label: "Success Stories" },
+  // { href: "/mentors", label: "Mentors" },
+  // { href: "/testimonials", label: "Success Stories" },
   { href: "/contact", label: "Contact" },
 ]
 
